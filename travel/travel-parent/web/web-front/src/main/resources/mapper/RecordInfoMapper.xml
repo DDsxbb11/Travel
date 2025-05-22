@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.travel.web.front.mapper.RecordInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.travel.model.pojo.RecordInfo">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="authorId" column="author_id" jdbcType="BIGINT"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="imgUrl" column="img_url" jdbcType="VARCHAR"/>
+            <result property="like" column="like" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,author_id,name,
+        img_url,like,create_time,
+        update_time,is_deleted
+    </sql>
+    <select id="getRecordDetailById" resultMap="RecordDetailMap"
+            parameterType="java.lang.Long">
+        select
+            ri.id,
+            ri.author_id,
+            ri.name,
+            ri.img_url,
+            ri.like,
+            ri.create_time,
+            ui.nickname,
+            ui.avatar_url
+        from record_info ri
+                 left join user_info ui on ri.author_id = ui.id
+        where ri.id = #{id} and ri.is_deleted = 0
+    </select>
+    <resultMap id="RecordDetailMap" type="com.travel.web.front.vo.record.RecordDetailVo" autoMapping="true">
+        <id property="id" column="id"/>
+        <result property="authorName" column="nickname" jdbcType="VARCHAR"/>
+        <result property="authorAvatar" column="avatar_url" jdbcType="VARCHAR"/>
+        <collection property="routeList" ofType="com.travel.model.pojo.RouteInfo"
+                    select="selectRouteList" column="id"/>
+    </resultMap>
+    <!--  查询记录列表  -->
+    <select id="selectRouteList" resultType="com.travel.model.pojo.RouteInfo">
+        select
+            id,
+            item_id,
+            type,
+            title,
+            description,
+            img_url,
+            sort
+        from route_info ri
+        where ri.item_id = #{id} and ri.is_deleted = 0
+
+    </select>
+    <select id="getPage" resultMap="RecordVoMap">
+        select
+            ri.id,
+            ri.name,
+            ri.img_url,
+            ri.create_time
+        from record_info ri
+        <where>
+            ri.is_deleted = 0
+            <if test="recordDTO != null">
+                <if test="recordDTO.keyword != null and recordDTO.keyword != ''">
+                    and ri.name like concat('%',#{recordDTO.keyword},'%')
+                </if>
+                <choose>
+                    <when test="recordDTO.option == 'new' ">
+                        order by ri.create_time desc
+                    </when>
+                    <when test="recordDTO.option == 'hot' ">
+                        order by ri.like desc
+                    </when>
+                    <when test="recordDTO.option == 'my'">
+                        and ri.author_id = #{userId}
+                    </when>
+                    <otherwise>
+                        order by ri.create_time desc
+                    </otherwise>
+                </choose>
+            </if>
+        </where>
+    </select>
+
+    <resultMap id="RecordVoMap" type="com.travel.web.front.vo.record.RecordVo" autoMapping="true">
+        <id property="id" column="id"/>
+        <association property="desc" select="SelectDescById" autoMapping="true" column="id"/>
+    </resultMap>
+
+    <select id="SelectDescById" resultType="java.lang.String">
+        select
+            ri.description
+        from record_info r
+                 left join (
+            select item_id, description
+            from route_info
+            where item_id = #{id}
+            order by id  -- 或其他排序字段，确保顺序一致性
+                limit 1
+        ) ri on r.id = ri.item_id
+        where r.id = #{id}
+    </select>
+</mapper>

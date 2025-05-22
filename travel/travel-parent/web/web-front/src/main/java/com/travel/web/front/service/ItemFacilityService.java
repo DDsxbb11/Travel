@@ -1,0 +1,13 @@
+package com.travel.web.front.service;
+
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.travel.model.pojo.ItemFacility;
+
+/**
+* @author 15101
+* @description 针对表【item_facility(实体设施对照表)】的数据库操作Service
+* @createDate 2025-03-15 22:16:56
+*/
+public interface ItemFacilityService extends IService<ItemFacility> {
+
+}

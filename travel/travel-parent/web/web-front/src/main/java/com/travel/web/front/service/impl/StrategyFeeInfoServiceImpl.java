@@ -1,0 +1,22 @@
+package com.travel.web.front.service.impl;
+
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.travel.model.pojo.StrategyFeeInfo;
+import com.travel.web.front.mapper.StrategyFeeInfoMapper;
+import com.travel.web.front.service.StrategyFeeInfoService;
+import org.springframework.stereotype.Service;
+
+/**
+* @author 15101
+* @description 针对表【strategy_fee_info(攻略费用说明)】的数据库操作Service实现
+* @createDate 2025-03-16 17:11:18
+*/
+@Service
+public class StrategyFeeInfoServiceImpl extends ServiceImpl<StrategyFeeInfoMapper, StrategyFeeInfo>
+    implements StrategyFeeInfoService {
+
+}
+
+
+
+

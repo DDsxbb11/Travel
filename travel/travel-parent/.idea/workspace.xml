@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8aa719d8-1fe4-4e9d-8435-18acc4a247c1" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="userSettingsFile" value="C:\Program Files\Maven\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2uIy8T07IAL1YvA0fZFWjRnEHqh" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.WebFrontApplicationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.Text.test.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.Text.test02.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.WebFrontApplicationTest.upload.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.common [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.common [org.apache.maven.plugins:maven-install-plugin:2.4:install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.model [install].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.WebAdminApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.WebFrontApplication.executor&quot;: &quot;Run&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Java/travel-parent/common/src/main/java/com/travel/common&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
+    &quot;应用程序.Text.executor&quot;: &quot;Run&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
+  }
+}</component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Java\travel-parent\common\src\main\java\com\travel\common" />
+      <recent name="E:\Java\travel-parent\web\web-front\src\main\resources" />
+      <recent name="E:\Java\travel-parent\web\web-admin\src\main\resources" />
+      <recent name="E:\Java\travel-parent\web\web-admin\src\main\java\com\travel\web\admin" />
+      <recent name="E:\Java\travel-parent\web\web-front\src\main\java\com\travel\web\front" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Java\travel-parent\web\web-front\src\main\resources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.travel.common.utilis" />
+      <recent name="com.travel.common.config" />
+      <recent name="com.travel.common.aspect" />
+      <recent name="com.travel.common.annotation" />
+      <recent name="com.travel.web.front.controller" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.WebFrontApplication">
+    <configuration name="Text" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.travel.web.front.Text" />
+      <module name="web-front" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.travel.web.front.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Text.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="web-front" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.travel.web.front.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.travel.web.front" />
+      <option name="MAIN_CLASS_NAME" value="com.travel.web.front.Text" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Text.test02" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="web-front" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.travel.web.front.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.travel.web.front" />
+      <option name="MAIN_CLASS_NAME" value="com.travel.web.front.Text" />
+      <option name="METHOD_NAME" value="test02" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WebFrontApplicationTest.upload" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="web-front" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.travel.web.front.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.travel.web.front" />
+      <option name="MAIN_CLASS_NAME" value="com.travel.web.front.WebFrontApplicationTest" />
+      <option name="METHOD_NAME" value="upload" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WebAdminApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="web-admin" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.travel.web.admin.WebAdminApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WebFrontApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="web-front" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.travel.web.front.WebFrontApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.travel.web.front.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.WebFrontApplication" />
+        <item itemvalue="JUnit.Text.test02" />
+        <item itemvalue="JUnit.Text.test" />
+        <item itemvalue="JUnit.WebFrontApplicationTest.upload" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8aa719d8-1fe4-4e9d-8435-18acc4a247c1" name="Changes" comment="" />
+      <created>1741950225066</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1741950225066</updated>
+      <workItem from="1741950226279" duration="3373000" />
+      <workItem from="1741953648061" duration="24634000" />
+      <workItem from="1742096610144" duration="13255000" />
+      <workItem from="1742134467041" duration="2164000" />
+      <workItem from="1742139756442" duration="431000" />
+      <workItem from="1742141236177" duration="3630000" />
+      <workItem from="1742175881376" duration="1771000" />
+      <workItem from="1742266776236" duration="3487000" />
+      <workItem from="1742352345121" duration="1913000" />
+      <workItem from="1742538731702" duration="227000" />
+      <workItem from="1743262026069" duration="1255000" />
+      <workItem from="1743270265413" duration="3759000" />
+      <workItem from="1743318368202" duration="33000" />
+      <workItem from="1743569280769" duration="2800000" />
+      <workItem from="1743578030334" duration="5634000" />
+      <workItem from="1743640465992" duration="44000" />
+      <workItem from="1743689041738" duration="2072000" />
+      <workItem from="1743736439598" duration="2508000" />
+      <workItem from="1743905031173" duration="1551000" />
+      <workItem from="1744299544851" duration="877000" />
+      <workItem from="1744331889917" duration="9000" />
+      <workItem from="1744350631357" duration="2696000" />
+      <workItem from="1744356098144" duration="17000" />
+      <workItem from="1744630247932" duration="1373000" />
+      <workItem from="1744631656590" duration="946000" />
+      <workItem from="1744681139794" duration="13000" />
+      <workItem from="1744904268046" duration="1545000" />
+      <workItem from="1744906088943" duration="3294000" />
+      <workItem from="1744936652048" duration="35000" />
+      <workItem from="1744962175331" duration="5118000" />
+      <workItem from="1744979807749" duration="8600000" />
+      <workItem from="1745032524934" duration="14727000" />
+      <workItem from="1745141040911" duration="7056000" />
+      <workItem from="1745195603760" duration="122000" />
+      <workItem from="1745235460627" duration="2643000" />
+      <workItem from="1745301531880" duration="2698000" />
+      <workItem from="1745325023699" duration="4926000" />
+      <workItem from="1745371438419" duration="5923000" />
+      <workItem from="1745497418171" duration="364000" />
+      <workItem from="1745508936414" duration="2647000" />
+      <workItem from="1745556801992" duration="12000" />
+      <workItem from="1745562947154" duration="643000" />
+      <workItem from="1745571278515" duration="5468000" />
+      <workItem from="1745804473038" duration="1376000" />
+      <workItem from="1745822052966" duration="388000" />
+      <workItem from="1745830820237" duration="323000" />
+      <workItem from="1745831968797" duration="1177000" />
+      <workItem from="1745841611656" duration="129000" />
+      <workItem from="1745937378984" duration="838000" />
+      <workItem from="1746070108168" duration="19942000" />
+      <workItem from="1746177087755" duration="2330000" />
+      <workItem from="1746199023821" duration="2946000" />
+      <workItem from="1746279948047" duration="3054000" />
+      <workItem from="1746345641303" duration="7342000" />
+      <workItem from="1746414651539" duration="9966000" />
+      <workItem from="1746499142628" duration="17000" />
+      <workItem from="1746499631399" duration="1356000" />
+      <workItem from="1746542786329" duration="1861000" />
+      <workItem from="1747903139418" duration="63000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

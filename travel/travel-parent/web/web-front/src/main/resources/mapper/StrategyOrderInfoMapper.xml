@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.travel.web.front.mapper.StrategyOrderInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.travel.model.pojo.StrategyOrderInfo">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="strategyId" column="strategy_id" jdbcType="BIGINT"/>
+            <result property="userId" column="user_id" jdbcType="BIGINT"/>
+            <result property="number" column="number" jdbcType="INTEGER"/>
+            <result property="appointmentTime" column="appointment_time" jdbcType="DATE"/>
+            <result property="price" column="price" jdbcType="DECIMAL"/>
+            <result property="paymentType" column="payment_type" jdbcType="VARCHAR"/>
+            <result property="state" column="state" jdbcType="TINYINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,strategy_id,user_id,
+        number,appointment_time,price,payment_type,
+        state,create_time,update_time,
+        is_deleted
+    </sql>
+    <select id="pageQuery" resultType="com.travel.web.front.vo.strategy.StrategyOrderVo">
+        select
+             so.id,
+             so.strategy_id,
+             so.user_id,
+             so.number,
+             so.appointment_time,
+             so.price,
+             so.payment_type,
+             so.state,
+             so.create_time,
+             si.name,
+             si.province,
+             si.address
+        from strategy_order_info so
+        left join strategy_info si on so.strategy_id = si.id
+        where so.user_id = #{userId}
+        order by so.appointment_time desc
+    </select>
+</mapper>

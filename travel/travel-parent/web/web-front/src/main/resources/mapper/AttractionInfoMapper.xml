@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.travel.web.front.mapper.AttractionInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.travel.model.pojo.AttractionInfo">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="theme" column="theme" jdbcType="VARCHAR"/>
+            <result property="province" column="province" jdbcType="VARCHAR"/>
+            <result property="city" column="city" jdbcType="VARCHAR"/>
+            <result property="address" column="address" jdbcType="VARCHAR"/>
+            <result property="openTime" column="open_time" jdbcType="VARCHAR"/>
+            <result property="isFee" column="is_fee" jdbcType="TINYINT"/>
+            <result property="childrenPrice" column="children_price" jdbcType="DECIMAL"/>
+            <result property="adultPrice" column="adult_price" jdbcType="DECIMAL"/>
+            <result property="longitude" column="longitude" jdbcType="VARCHAR"/>
+            <result property="latitude" column="latitude" jdbcType="VARCHAR"/>
+            <result property="rating" column="rating" jdbcType="DECIMAL"/>
+            <result property="description" column="description" jdbcType="VARCHAR"/>
+            <result property="trafficDesc" column="traffic_desc" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,theme,
+        province,city,address,
+        open_time,is_fee,children_price,
+        adult_price,longitude,latitude,
+        rating,description,traffic_desc,
+        create_time,update_time,is_deleted
+    </sql>
+
+    <select id="getAttractionInfoPage" resultType="com.travel.web.front.vo.attraction.AttractionVo">
+        select ai.id,
+        ai.name,
+        ai.theme,
+        ai.city,
+        ai.province,
+        ai.address,
+        ai.is_fee,
+        ai.description,
+        ap.url as imgUrl
+        from attraction_info ai
+        left join attraction_img ap on ai.id = ap.attraction_id
+        <where>
+            ap.type ="header" and ai.is_deleted = 0
+            <if test="attractionDto != null">
+                <if test="attractionDto.theme !='全部' and attractionDto.theme != null and attractionDto.theme != ''">
+                    and ai.theme = #{attractionDto.theme}
+                </if>
+                <if test="attractionDto.province != null and attractionDto.province != '' and attractionDto.province != '全部'">
+                    and ai.province = #{attractionDto.province}
+                </if>
+                <if test="attractionDto.isFee !=null and attractionDto.isFee != ''">
+                    and ai.is_fee = #{attractionDto.isFee}
+                </if>
+                <if test="attractionDto.keyword != null and attractionDto.keyword != ''">
+                    and (ai.name like concat('%',#{attractionDto.keyword},'%') )
+                </if>
+            </if>
+        </where>
+    </select>
+</mapper>

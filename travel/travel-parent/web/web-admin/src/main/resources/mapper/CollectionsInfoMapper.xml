@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.travel.model.mapper.CollectionsInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.travel.model.pojo.CollectionsInfo">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="userId" column="user_id" jdbcType="BIGINT"/>
+            <result property="itemId" column="item_id" jdbcType="BIGINT"/>
+            <result property="itemType" column="item_type" jdbcType="VARCHAR"/>
+            <result property="itemName" column="item_name" jdbcType="VARCHAR"/>
+            <result property="itemImg" column="item_img" jdbcType="VARCHAR"/>
+            <result property="itemDesc" column="item_desc" jdbcType="VARCHAR"/>
+            <result property="collectionsTime" column="collections_time" jdbcType="TIMESTAMP"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,item_id,
+        item_type,item_name,item_img,
+        item_desc,collections_time,create_time,
+        update_time,is_deleted
+    </sql>
+</mapper>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.travel.web.front.mapper.AttractionOrderInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.travel.model.pojo.AttractionOrderInfo">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="attractionId" column="attraction_id" jdbcType="BIGINT"/>
+            <result property="userId" column="user_id" jdbcType="BIGINT"/>
+            <result property="childrenNumber" column="children_number" jdbcType="INTEGER"/>
+            <result property="adultNumber" column="adult_number" jdbcType="INTEGER"/>
+            <result property="totalPrice" column="total_price" jdbcType="DECIMAL"/>
+            <result property="appointmentTime" column="appointment_time" jdbcType="TIMESTAMP"/>
+            <result property="paymentType" column="payment_type" jdbcType="VARCHAR"/>
+            <result property="state" column="state" jdbcType="TINYINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,attraction_id,user_id,
+        children_number,adult_number,
+        total_price,appointment_time,
+        state,create_time,update_time,
+        is_deleted
+    </sql>
+    <select id="pageQuery" resultType="com.travel.web.front.vo.attraction.AttractionOrderVo">
+        select
+            aoi.id,
+            aoi.attraction_id,
+            aoi.user_id,
+            aoi.children_number,
+            aoi.adult_number,
+            aoi.total_price,
+            aoi.appointment_time,
+            aoi.payment_type,
+            aoi.state,
+            aoi.create_time,
+            ai.name,
+            ai.theme,
+            ai.province,
+            ai.city,
+            ai.address
+        from
+            attraction_order_info aoi
+     left join attraction_info ai on aoi.attraction_id = ai.id
+     where aoi.user_id = #{userId}
+     order by aoi.create_time desc
+
+    </select>
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.travel.web.front.mapper.StrategyLableMapper">
+
+    <resultMap id="BaseResultMap" type="com.travel.model.pojo.StrategyLable">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="strategyId" column="strategy_id" jdbcType="BIGINT"/>
+        <result property="lableId" column="lable_id" jdbcType="BIGINT"/>
+        <result property="sort" column="sort" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,strategy_id,lable_id,
+        sort,create_time,update_time,
+        is_deleted
+    </sql>
+
+    <select id="getLableList" resultType="java.lang.String">
+        select li.name
+        from lable_info li
+        left join strategy_lable sl on li.id = sl.lable_id
+           and sl.strategy_id = #{strategyId}
+           and sl.is_deleted = 0
+        order by sl.sort desc
+    </select>
+</mapper>
