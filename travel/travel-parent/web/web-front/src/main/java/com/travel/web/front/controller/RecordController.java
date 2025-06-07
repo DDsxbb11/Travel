@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.travel.common.result.Result;
 import com.travel.model.pojo.RecordInfo;
 import com.travel.web.front.dto.record.RecordDTO;
+import com.travel.web.front.dto.record.RecordSavaDTO;
 import com.travel.web.front.service.RecordInfoService;
 import com.travel.web.front.vo.record.RecordDetailVo;
 import com.travel.web.front.vo.record.RecordVo;
@@ -46,6 +47,14 @@ public class RecordController {
                                                       @RequestHeader(name = "Token",required = false) String token) {
         RecordDetailVo result=recordInfoService.getRecordDetailById(id,token);
         return Result.ok(result);
+    }
+
+    @PostMapping("/save")
+    @Operation(summary = "保存日记")
+    public Result saveRecord(@RequestBody RecordSavaDTO dto,
+                       @RequestHeader String token){
+        recordInfoService.saveRecord(dto,token);
+        return Result.ok();
     }
 
 }

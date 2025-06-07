@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.travel.model.mapper.StrategyInfoMapper">
+<mapper namespace="com.travel.web.admin.mapper.StrategyInfoMapper">
 
     <resultMap id="BaseResultMap" type="com.travel.model.pojo.StrategyInfo">
             <id property="id" column="id" jdbcType="BIGINT"/>
@@ -16,6 +16,9 @@
             <result property="price" column="price" jdbcType="DECIMAL"/>
             <result property="sale" column="sale" jdbcType="INTEGER"/>
             <result property="rating" column="rating" jdbcType="DECIMAL"/>
+            <result property="status" column="status" jdbcType="TINYINT"/>
+            <result property="number" column="number" jdbcType="INTEGER"/>
+            <result property="phone" column="phone" jdbcType="VARCHAR"/>
             <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
             <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
             <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
@@ -25,7 +28,7 @@
         id,name,province,
         address,img_url,start_time,
         end_time,description,price,
-        sale,rating,create_time,
+        sale,rating,status,number,phone,create_time,
         update_time,is_deleted
     </sql>
 </mapper>

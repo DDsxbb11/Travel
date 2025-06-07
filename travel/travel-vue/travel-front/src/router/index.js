@@ -59,7 +59,12 @@ export const constantRoutes = [
       path: 'index',
       name: '出行记录',
       component: () => import('@/views/record/index.vue'),
-    }]
+    },
+    {
+    path: '/publishRecord',
+    component: () => import('@/views/record/components/pulishRecord.vue'),
+    hidden: true
+    },]
   },
   {
     path: '/strategy',

@@ -52,12 +52,12 @@
     &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.WebAdminApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.WebFrontApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.WebAdminApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.WebFrontApplication.executor&quot;: &quot;Debug&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Java/travel-parent/common/src/main/java/com/travel/common&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Java/travel-parent/web/web-admin/src/main/java/com/travel/web/admin/vo&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -66,7 +66,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
     &quot;应用程序.Text.executor&quot;: &quot;Run&quot;
   },
@@ -81,24 +81,24 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Java\travel-parent\common\src\main\java\com\travel\common" />
-      <recent name="E:\Java\travel-parent\web\web-front\src\main\resources" />
-      <recent name="E:\Java\travel-parent\web\web-admin\src\main\resources" />
+      <recent name="E:\Java\travel-parent\web\web-admin\src\main\java\com\travel\web\admin\vo" />
+      <recent name="E:\Java\travel-parent\web\web-admin\src\main\java\com\travel\web\admin\dto" />
+      <recent name="E:\Java\travel-parent\web\web-admin\src\main\resources\mapper" />
       <recent name="E:\Java\travel-parent\web\web-admin\src\main\java\com\travel\web\admin" />
-      <recent name="E:\Java\travel-parent\web\web-front\src\main\java\com\travel\web\front" />
+      <recent name="E:\Java\travel-parent\web\web-admin\src\main\java\com\travel\web\admin\mapper" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Java\travel-parent\web\web-front\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.travel.common.utilis" />
-      <recent name="com.travel.common.config" />
-      <recent name="com.travel.common.aspect" />
-      <recent name="com.travel.common.annotation" />
-      <recent name="com.travel.web.front.controller" />
+      <recent name="com.travel.web.admin.controller" />
+      <recent name="com.travel.web.admin.dto.login" />
+      <recent name="com.travel.web.admin.service.impl" />
+      <recent name="com.travel.web.admin.service" />
+      <recent name="com.travel.web.admin.dto" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.WebFrontApplication">
+  <component name="RunManager" selected="Spring Boot.WebAdminApplication">
     <configuration name="Text" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.travel.web.front.Text" />
       <module name="web-front" />
@@ -183,8 +183,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.WebFrontApplication" />
-        <item itemvalue="JUnit.Text.test02" />
         <item itemvalue="JUnit.Text.test" />
+        <item itemvalue="JUnit.Text.test02" />
         <item itemvalue="JUnit.WebFrontApplicationTest.upload" />
       </list>
     </recent_temporary>
@@ -255,7 +255,34 @@
       <workItem from="1746499142628" duration="17000" />
       <workItem from="1746499631399" duration="1356000" />
       <workItem from="1746542786329" duration="1861000" />
-      <workItem from="1747903139418" duration="63000" />
+      <workItem from="1746617720079" duration="2342000" />
+      <workItem from="1746664361993" duration="93000" />
+      <workItem from="1746720148106" duration="408000" />
+      <workItem from="1747473164631" duration="754000" />
+      <workItem from="1747807669137" duration="19000" />
+      <workItem from="1748341986706" duration="1275000" />
+      <workItem from="1748354649470" duration="10000" />
+      <workItem from="1748363856573" duration="2449000" />
+      <workItem from="1748398602571" duration="10668000" />
+      <workItem from="1748441977433" duration="1889000" />
+      <workItem from="1748447443736" duration="7000" />
+      <workItem from="1748492809930" duration="314000" />
+      <workItem from="1748496379124" duration="1880000" />
+      <workItem from="1748534869042" duration="2777000" />
+      <workItem from="1748573705618" duration="224000" />
+      <workItem from="1748581374446" duration="3157000" />
+      <workItem from="1748585216499" duration="4415000" />
+      <workItem from="1748599468793" duration="31630000" />
+      <workItem from="1748963011520" duration="5625000" />
+      <workItem from="1749024196519" duration="666000" />
+      <workItem from="1749100971746" duration="7809000" />
+      <workItem from="1749124614355" duration="5597000" />
+      <workItem from="1749178039363" duration="11000" />
+      <workItem from="1749216786280" duration="2017000" />
+      <workItem from="1749219750934" duration="1132000" />
+      <workItem from="1749227812082" duration="1056000" />
+      <workItem from="1749229030164" duration="3510000" />
+      <workItem from="1749266785642" duration="1171000" />
     </task>
     <servers />
   </component>

@@ -34,5 +34,6 @@ public class AttractionOrderInfo extends BaseEntity{
 
     private Integer state;
 
+    private String note;
 
 }

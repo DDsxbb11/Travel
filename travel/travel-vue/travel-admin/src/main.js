@@ -7,6 +7,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/zh-CN' // lang i18n
 
 import '@/styles/index.scss' // global css
+import echarts from 'echarts'//引入echarts
 
 import App from './App'
 import store from './store'
@@ -29,7 +30,7 @@ if (process.env.NODE_ENV === 'production') {
   const {mockXHR} = require('../mock')
   mockXHR()
 }
-
+Vue.prototype.$echarts = echarts
 // set ElementUI lang to EN
 Vue.use(ElementUI, {locale})
 // 如果想要中文版 element-ui，按如下方式声明

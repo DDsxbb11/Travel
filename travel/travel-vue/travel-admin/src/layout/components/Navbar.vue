@@ -12,7 +12,7 @@
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper" style="width: 40px;height: 40px;">
-          <img :src=userInfo.header style="position:absolute;width: 40px;border-radius: 10px;"/>
+          <img :src=userInfo.avatarUrl style="position:absolute;width: 40px;border-radius: 10px;"/>
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown" style="width: 80px;">
@@ -101,7 +101,7 @@
 import { mapGetters } from "vuex";
 import Breadcrumb from "@/components/Breadcrumb";
 import Hamburger from "@/components/Hamburger";
-import {updatePasswordById,updateUserById,getUserInfo} from '@/api/request'
+import {updatePasswordById,updateUserById,getUserInfo} from '@/api/user'
 
 export default {
   data() {
@@ -229,7 +229,9 @@ export default {
   mounted(){
     getUserInfo().then(response=>{
       this.userInfo=response.data
-      this.imgUrl=response.data.header
+      console.log(this.userInfo)
+      this.imgUrl=response.data.avatarUrl
+      console.log(this.imgUrl)
     })  
   }
   

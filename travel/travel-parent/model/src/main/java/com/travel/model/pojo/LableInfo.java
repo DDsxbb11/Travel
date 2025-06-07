@@ -15,5 +15,4 @@ import lombok.Data;
 public class LableInfo extends BaseEntity{
     private String name;
 
-    private String type;
 }

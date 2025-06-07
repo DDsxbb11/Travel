@@ -207,7 +207,7 @@
       <div class="route-map">
         <el-timeline style="max-width: 700px" class="custom-timeline">
           <el-timeline-item
-            v-for="(item, index) in strategy.routes"
+            v-for="(item, index) in strategy.routeList"
             :key="index"
             :timestamp="item.title"
             placement="top"
@@ -215,9 +215,9 @@
             size="large"
           >
             <el-card>
-              <h3>{{ item.desc }}</h3>
+              <h3>{{ item.description }}</h3>
               <div class="route-img">
-                <img :src="item.imageUrl" alt="" />
+                <img :src="item.imgUrl" alt="" />
               </div>
             </el-card>
           </el-timeline-item>
@@ -229,9 +229,9 @@
       <div class="desc-theme">
         <span style="margin-left: 20px; margin-bottom: 20px">费用说明</span>
       </div>
-      <div class="hotel-policy" v-for="item in strategy.feeInfo" :key="item.id">
+      <div class="hotel-policy" v-for="item in strategy.feeInfoList" :key="item.id">
         <div class="hotel-policy-title">{{ item.title }}</div>
-        <div class="hotel-policy-content">{{ item.desc }}</div>
+        <div class="hotel-policy-content">{{ item.description }}</div>
         <div class="hotel-policy-line"></div>
       </div>
     </div>

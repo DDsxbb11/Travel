@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.travel.common.annotation.LoginCheck;
 import com.travel.common.result.Result;
 import com.travel.model.pojo.AttractionOrderInfo;
+import com.travel.web.front.dto.order.OrderCancelDTO;
 import com.travel.web.front.service.AttractionOrderInfoService;
 import com.travel.web.front.vo.attraction.AttractionOrderVo;
 import io.swagger.v3.oas.annotations.Operation;
@@ -59,4 +60,12 @@ public class AttractionOrderController {
         return Result.ok();
     }
 
+    @PostMapping("/refund")
+    @Operation(summary = "取消景点订单")
+    @LoginCheck
+    public Result cancelAttractionOrder(@RequestHeader("Token") String token,
+                                        @RequestBody OrderCancelDTO dto) {
+        attractionOrderInfoService.cancelAttractionOrder(token, dto);
+        return Result.ok();
+    }
 }

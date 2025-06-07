@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.travel.model.mapper.ItemFacilityMapper">
+<mapper namespace="com.travel.web.admin.mapper.ItemFacilityMapper">
 
     <resultMap id="BaseResultMap" type="com.travel.model.pojo.ItemFacility">
             <id property="id" column="id" jdbcType="BIGINT"/>
@@ -20,4 +20,15 @@
         type,sort,create_time,
         update_time,is_deleted
     </sql>
+    <select id="getFacilityIdListByTypeAndItemId" resultType="java.lang.Long">
+        SELECT
+            itf.facility_id
+        FROM item_facility itf
+                 INNER JOIN facility_info fi ON itf.facility_id = fi.id
+        WHERE itf.item_id = #{id}
+          AND itf.type = #{type}
+          AND itf.is_deleted = 0
+          AND fi.is_deleted = 0
+          AND fi.type = #{facilityType}
+    </select>
 </mapper>

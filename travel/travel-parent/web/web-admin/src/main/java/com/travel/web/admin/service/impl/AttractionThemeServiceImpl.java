@@ -1,10 +1,15 @@
 package com.travel.web.admin.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.travel.model.mapper.AttractionThemeMapper;
 import com.travel.model.pojo.AttractionTheme;
-import com.travel.model.service.AttractionThemeService;
+import com.travel.model.pojo.HotelInfo;
+import com.travel.web.admin.dto.theme.ThemeDTO;
+import com.travel.web.admin.mapper.AttractionThemeMapper;
+import com.travel.web.admin.service.AttractionThemeService;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 /**
 * @author 15101
@@ -13,8 +18,16 @@ import org.springframework.stereotype.Service;
 */
 @Service
 public class AttractionThemeServiceImpl extends ServiceImpl<AttractionThemeMapper, AttractionTheme>
-    implements AttractionThemeService{
+    implements AttractionThemeService {
 
+    @Override
+    public IPage<AttractionTheme> getAttractionThemePage(IPage<AttractionTheme> page, ThemeDTO dto) {
+        LambdaQueryWrapper<AttractionTheme> queryWrapper = new LambdaQueryWrapper<>();
+        if (dto != null) {
+            queryWrapper.like(dto.getName() != null && StringUtils.hasText(dto.getName()), AttractionTheme::getName, dto.getName());
+        }
+        return this.page(page, queryWrapper);
+    }
 }
 
 

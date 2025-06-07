@@ -12,11 +12,6 @@ export const constantRoutes = [
     component: () => import('@/views/login/index'),
     hidden: true
   },
-  {
-    path: '/addUser',
-    component: () => import('@/views/system/addUser'),
-    hidden: true
-  },
   
   {
     path: '/404',
@@ -37,111 +32,169 @@ export const constantRoutes = [
   },
 
   {
-    path: '/baseInfo',
+    path: '/attraction',
     component: Layout,
-    redirect: '/baseInfo/goods',
-    name: 'BaseInfo',
-    meta: {title: '基础信息', icon: 'el-icon-s-help'},
-    children: [
-      {
-        path: 'goods',
-        name: 'Goods',
-        component: () => import('@/views/base_info/goods'),
-        meta: {title: '商品信息', icon: 'table'}
-      },
-      {
-        path: 'customer',
-        name: 'Customer',
-        component: () => import('@/views/base_info/customer'),
-        meta: {title: '客户信息', icon: 'el-icon-s-custom'}
-      },
-      {
-        path: 'supplier',
-        name: 'Supplier',
-        component: () => import('@/views/base_info/supplier'),
-        meta: {title: '供应商信息', icon: 'el-icon-s-check'}
-      }
-    ]
-  },
-  {
-    path: '/stock',
-    component: Layout,
-    redirect: '/stock/table',
-    name: 'Stock',
-    meta: {title: '进货管理', icon: 'el-icon-folder-add'},
+    redirect: '/attraction/index',
+    name: 'Attraction',
+    meta: {title: '景点管理', icon: 'el-icon-folder-add'},
     children: [
       {
         path: 'index',
-        name: 'Add',
-        component: () => import('@/views/stock/index'),
-        meta: {title: '进货记录', icon: 'el-icon-notebook-2'}
+        name: 'Index',
+        component: () => import('@/views/attraction/index'),
+        meta: {title: '景点管理', icon: 'el-icon-notebook-2'}
       },
       {
-        path: 'add',
-        name: 'Add',
-        component: () => import('@/views/stock/add'),
-        meta: {title: '商品入库', icon: 'el-icon-shopping-cart-full'}
+        path: 'theme',
+        name: 'Theme',
+        component: () => import('@/views/attraction/theme'),
+        meta: {title: '主题管理', icon: 'el-icon-shopping-cart-full'}
+      },
+      {path: 'addOrUpdateAttraction/:id',
+      name: 'AddOrUpdateAttraction',
+      component: () => import('@/views/attraction/component/addOrUpdateAttraction'),
+      hidden: true 
+    },
+    ]
+  },
+
+  {
+  path: '/hotel',
+  component: Layout,  // 一级布局
+  redirect: '/hotel/index',
+  name: 'Hotel',
+  meta: { title: '酒店管理', icon: 'el-icon-house' },
+  children: [
+    {
+      path: 'index',
+      name: 'HotelIndex',
+      component: () => import('@/views/hotel/index'),
+      meta: { title: '酒店列表', icon: 'el-icon-notebook-2' }
+    },
+    {
+      path: 'room',
+      name: 'HotelRoom',
+      component: () => import('@/views/hotel/room'),
+      meta: { title: '客房管理', icon: 'el-icon-shopping-cart-2' }
+    },
+    {
+      path: 'facility',
+      name: 'Facility',
+      component: () => import('@/views/hotel/facility'), // 专门用于嵌套路由的容器组件
+      meta: { title: '属性管理', icon: 'el-icon-setting' },
+      
+    },
+    {path: 'addOrUpdateFacility/:id',
+      name: 'AddOrUpdateFacility',
+      component: () => import('@/views/hotel/component/addOrUpdateFacility'),
+      hidden: true 
+    },
+    {path: 'addOrUpdateHotel/:id',
+      name: 'AddOrUpdateHotel',
+      component: () => import('@/views/hotel/component/addOrUpdateHotel'),
+      hidden: true 
+    },
+    {path: 'addOrUpdateRoom/:id',
+      name: 'AddOrUpdateRoom',
+      component: () => import('@/views/hotel/component/addOrUpdateRoom'),
+      hidden: true 
+    },
+]
+},
+
+  {
+    path: '/strategy',
+    component: Layout,
+    redirect: '/strategy/index',
+    name: 'Strategy',
+    meta: {title: '攻略管理', icon: 'el-icon-setting'},
+    children: [
+      {
+        path: 'index',
+        name: 'Index',
+        component: () => import('@/views/strategy/index'),
+        meta: {title: '攻略管理', icon: 'el-icon-s-check'}
+      },
+      {
+        path: 'attribute',
+        name: 'Attribute',
+        component: () => import('@/views/strategy/attribute'),
+        meta: {title: '标签管理', icon: 'el-icon-s-custom'}
+      },
+      {path: 'addOrUpdateStrategy/:id',
+        name: 'AddOrUpdateStrategy',
+        component: () => import('@/views/strategy/component/addOrUpdateStrategy'),
+        hidden: true 
+      },
+    ]
+  },
+
+  {
+    path: '/record',
+    component: Layout,
+    redirect: '/record/index',
+    name: 'Record',
+    meta: {title: '日记管理', icon: 'el-icon-setting'},
+    children: [
+      {
+        path: 'index',
+        name: 'Index',
+        component: () => import('@/views/record/index'),
+        meta: {title: '日记管理', icon: 'el-icon-s-check'}
       }
     ]
   },
 
   {
-    path: '/sell',
+    path: '/bill',
     component: Layout,
-    redirect: '/sell/record',
-    name: 'Sell',
-    meta: {title: '销售管理', icon: 'el-icon-folder-remove'},
+    redirect: '/bill/index',
+    name: 'Bill',
+    meta: {title: '账单管理', icon: 'el-icon-setting'},
     children: [
       {
-        path: 'record',
-        name: 'Record',
-        component: () => import('@/views/sell/record'),
-        meta: {title: '销售记录', icon: 'el-icon-notebook-2'}
+        path: 'attraction',
+        name: 'Atttraction',
+        component: () => import('@/views/bill/attraction'),
+        meta: {title: '景点账单', icon: 'el-icon-s-check'}
       },
       {
-        path: 'returnGoods',
-        name: 'ReturnGoods',
-        component: () => import('@/views/sell/return_goods_record.vue'),
-        meta: {title: '退货记录', icon: 'el-icon-shopping-cart-2'}
+        path: 'hotel',
+        name: 'Hotel',
+        component: () => import('@/views/bill/hotel'),
+        meta: {title: '酒店账单', icon: 'el-icon-s-custom'}
       },
       {
-        path: 'out',
-        name: 'Out',
-        component: () => import('@/views/sell/out.vue'),
-        meta: {title: '商品退货', icon: 'el-icon-shopping-cart-2'}
+        path: 'strategy',
+        name: 'Strategy',
+        component: () => import('@/views/bill/strategy'),
+        meta: {title: '攻略账单', icon: 'el-icon-s-custom'}
       }
     ]
   },
+
 
   {
     path: '/system',
     component: Layout,
     redirect: '/system/user',
     name: 'System',
-    meta: {title: '系统管理', icon: 'el-icon-setting'},
+    meta: {title: '系统管理', icon: 'el-icon-s-help'},
     children: [
       {
         path: 'user',
         name: 'User',
         component: () => import('@/views/system/user'),
-        meta: {title: '用户管理', icon: 'el-icon-s-check'}
+        meta: {title: '用户管理', icon: 'table'}
       },
       {
-        path: 'role',
-        name: 'Role',
-        component: () => import('@/views/system/role'),
-        meta: {title: '权限管理', icon: 'el-icon-s-custom'}
-      },
-      {
-        path: 'addGoods',
-        name: 'AddGoods',
-        component: () => import('@/views/system/add_goods'),
-        meta: {title: '添加商品', icon: 'el-icon-s-custom'}
+        path: 'tourist',
+        name: 'Tourist',
+        component: () => import('@/views/system/tourist'),
+        meta: {title: '游客管理', icon: 'el-icon-s-custom'}
       }
     ]
   },
-
-
   // 404 page must be placed at the end !!!
   {path: '*', redirect: '/404', hidden: true}
 ]

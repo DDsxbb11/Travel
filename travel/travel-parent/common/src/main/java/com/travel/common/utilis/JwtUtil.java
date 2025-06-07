@@ -20,11 +20,10 @@ import java.util.Date;
 
 @Data
 @Component
-@ConfigurationProperties(prefix = "jwt.token")
 public class JwtUtil {
 
-    private String tokenSignKey;
-    private Long tokenExpiration;
+    private static final String tokenSignKey="travel324122";
+    private static final Long tokenExpiration= 120L;
 
     //生成token字符串
     public  String createToken(Long userId) {

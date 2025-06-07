@@ -16,7 +16,7 @@ public class AttractionImg extends BaseEntity{
 
     private String name;
 
-    private Integer attractionId;
+    private Long attractionId;
 
     private String type;
 

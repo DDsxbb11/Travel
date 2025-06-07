@@ -24,4 +24,6 @@ public class RoomInfo extends BaseEntity{
 
     private Integer number;
 
+    private Integer status;
+
 }

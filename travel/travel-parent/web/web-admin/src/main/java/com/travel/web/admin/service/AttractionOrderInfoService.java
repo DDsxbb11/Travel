@@ -1,7 +1,10 @@
 package com.travel.web.admin.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.travel.model.pojo.AttractionOrderInfo;
+import com.travel.web.admin.dto.order.OrderDTO;
+import com.travel.web.admin.vo.order.AttractionOrderVo;
 
 /**
 * @author 15101
@@ -10,4 +13,5 @@ import com.travel.model.pojo.AttractionOrderInfo;
 */
 public interface AttractionOrderInfoService extends IService<AttractionOrderInfo> {
 
+    IPage<AttractionOrderVo> getAttractionOrderInfoList(IPage<AttractionOrderVo> page, OrderDTO dto);
 }

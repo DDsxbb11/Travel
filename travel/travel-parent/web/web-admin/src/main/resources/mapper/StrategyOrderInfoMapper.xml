@@ -2,25 +2,62 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.travel.model.mapper.StrategyOrderInfoMapper">
+<mapper namespace="com.travel.web.admin.mapper.StrategyOrderInfoMapper">
 
     <resultMap id="BaseResultMap" type="com.travel.model.pojo.StrategyOrderInfo">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="strategyId" column="strategy_id" jdbcType="BIGINT"/>
-            <result property="userId" column="user_id" jdbcType="BIGINT"/>
-            <result property="number" column="number" jdbcType="INTEGER"/>
-            <result property="price" column="price" jdbcType="DECIMAL"/>
-            <result property="orderTime" column="order_time" jdbcType="TIMESTAMP"/>
-            <result property="state" column="state" jdbcType="TINYINT"/>
-            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
-            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
-            <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="strategyId" column="strategy_id" jdbcType="BIGINT"/>
+        <result property="userId" column="user_id" jdbcType="BIGINT"/>
+        <result property="number" column="number" jdbcType="INTEGER"/>
+        <result property="appointmentTime" column="appointment_time" jdbcType="DATE"/>
+        <result property="price" column="price" jdbcType="DECIMAL"/>
+        <result property="paymentType" column="payment_type" jdbcType="VARCHAR"/>
+        <result property="state" column="state" jdbcType="TINYINT"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="note" column="note" jdbcType="VARCHAR"/>
+        <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,strategy_id,user_id,
-        number,price,order_time,
-        state,create_time,update_time,
+        number,appointment_time,price,payment_type,
+        state,create_time,update_time,note,
         is_deleted
     </sql>
+    <select id="getStrategyOrderInfoList" resultMap="OrderMap">
+        select
+            soi.id,soi.strategy_id,soi.user_id,
+            soi.number,soi.appointment_time,soi.price,soi.payment_type,
+            soi.state,soi.create_time,soi.update_time,soi.note,si.name as strategy_name,
+            ui.username,ui.phone,si.address
+        from strategy_order_info soi
+        left join strategy_info si on soi.strategy_id = si.id
+        left join user_info ui on soi.user_id = ui.id
+        where soi.is_deleted = 0
+        <if test="dto.getPhone!=null and dto.getPhone!='' ">
+            and ui.phone like concat('%',#{dto.phone},'%')
+        </if>
+        <if test="dto.getItemName!=null and dto.getItemName!='' ">
+            and si.name like concat('%',#{dto.itemName},'%')
+        </if>
+    </select>
+
+    <resultMap id="OrderMap" type="com.travel.web.admin.vo.order.StrategyOrderVo">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="strategyId" column="strategy_id" jdbcType="BIGINT"/>
+        <result property="userId" column="user_id" jdbcType="BIGINT"/>
+        <result property="number" column="number" jdbcType="INTEGER"/>
+        <result property="appointmentTime" column="appointment_time" jdbcType="DATE"/>
+        <result property="price" column="price" jdbcType="DECIMAL"/>
+        <result property="paymentType" column="payment_type" jdbcType="VARCHAR"/>
+        <result property="state" column="state" jdbcType="TINYINT"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="note" column="note" jdbcType="VARCHAR"/>
+        <result property="strategyName" column="strategy_name" jdbcType="VARCHAR"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+    </resultMap>
 </mapper>

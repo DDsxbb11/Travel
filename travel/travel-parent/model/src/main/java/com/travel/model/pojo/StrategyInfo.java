@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.math.BigDecimal;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
@@ -23,8 +25,10 @@ public class StrategyInfo extends BaseEntity{
 
     private String imgUrl;
 
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date startTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date endTime;
 
     private String description;
@@ -34,4 +38,10 @@ public class StrategyInfo extends BaseEntity{
     private Integer sale;
 
     private BigDecimal rating;
+
+    private Integer status;
+
+    private Integer number;
+
+    private String phone;
 }

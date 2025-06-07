@@ -1,9 +1,9 @@
 package com.travel.web.admin.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.travel.model.mapper.RouteInfoMapper;
 import com.travel.model.pojo.RouteInfo;
-import com.travel.model.service.RouteInfoService;
+import com.travel.web.admin.mapper.RouteInfoMapper;
+import com.travel.web.admin.service.RouteInfoService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 */
 @Service
 public class RouteInfoServiceImpl extends ServiceImpl<RouteInfoMapper, RouteInfo>
-    implements RouteInfoService{
+    implements RouteInfoService {
 
 }
 

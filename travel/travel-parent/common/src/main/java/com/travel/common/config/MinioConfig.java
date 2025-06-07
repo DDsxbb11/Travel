@@ -12,7 +12,8 @@ import org.springframework.context.annotation.Configuration;
  * @date: 2024/11/04  9:14
  */
 @Data
-//@Configuration
+@Configuration
+@ConfigurationProperties(prefix = "minio")
 public class MinioConfig {
 
     private String endpoint;

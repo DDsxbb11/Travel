@@ -1,9 +1,9 @@
 package com.travel.web.admin.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.travel.model.mapper.CommentImgMapper;
 import com.travel.model.pojo.CommentImg;
-import com.travel.model.service.CommentImgService;
+import com.travel.web.admin.mapper.CommentImgMapper;
+import com.travel.web.admin.service.CommentImgService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 */
 @Service
 public class CommentImgServiceImpl extends ServiceImpl<CommentImgMapper, CommentImg>
-    implements CommentImgService{
+    implements CommentImgService {
 
 }
 

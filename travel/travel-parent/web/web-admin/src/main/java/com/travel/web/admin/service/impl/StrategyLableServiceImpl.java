@@ -1,9 +1,9 @@
 package com.travel.web.admin.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.travel.model.mapper.StrategyLableMapper;
 import com.travel.model.pojo.StrategyLable;
-import com.travel.model.service.StrategyLableService;
+import com.travel.web.admin.mapper.StrategyLableMapper;
+import com.travel.web.admin.service.StrategyLableService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 */
 @Service
 public class StrategyLableServiceImpl extends ServiceImpl<StrategyLableMapper, StrategyLable>
-    implements StrategyLableService{
+    implements StrategyLableService {
 
 }
 

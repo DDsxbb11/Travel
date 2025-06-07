@@ -113,7 +113,7 @@
     <el-dialog :visible.sync="refundDialogVisible" title="退款申请">
       <el-form>
         <el-form-item label="退款原因">
-          <el-select v-model="selectedReason" placeholder="请选择退款原因">
+          <el-select v-model="reason" placeholder="请选择退款原因">
             <el-option
               v-for="item in reasons"
               :key="item.value"
@@ -122,7 +122,7 @@
             ></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item v-if="selectedReason === 'other'" label="其他原因">
+        <el-form-item v-if="reason === 'other'" label="其他原因">
           <el-input
             v-model="otherReason"
             placeholder="请输入其他退款原因"
@@ -138,7 +138,7 @@
 </template>
   
 <script>
-import { delOrder } from "@/api/request";
+import { delOrder ,refund} from "@/api/request";
 
 export default {
   name: "AttractionComponent",
@@ -156,7 +156,7 @@ export default {
         { label: "门票信息错误", value: "门票信息错误" },
         { label: "其他", value: "其他" },
       ],
-      selectedReason: null,
+      reason: null,
       otherReason: "",
       refundDialogVisible: false,
       currentOrderId: null,
@@ -181,21 +181,25 @@ export default {
       this.currentOrderId = orderId;
       this.refundDialogVisible = true;
     },
-    submitRefund() {
-      if (this.selectedReason === "other" && !this.otherReason) {
+    async submitRefund() {
+      if (this.reason === "other" && !this.otherReason) {
         this.$message.error("请输入其他退款原因");
         return;
       }
       let refundReason =
-        this.selectedReason === "other"
+        this.reason === "other"
           ? this.otherReason
-          : this.selectedReason;
+          : this.reason;
+      const { code, message } = await refund("attraction", {
+        id: this.currentOrderId,
+        refundReason,
+      });
       this.$message({
         type: "success",
         message: `您的退款申请已提交，退款原因: ${refundReason}，系统会在5个工作日给出结果`,
       });
       this.refundDialogVisible = false;
-      this.selectedReason = null;
+      this.reason = null;
       this.otherReason = "";
     },
   },

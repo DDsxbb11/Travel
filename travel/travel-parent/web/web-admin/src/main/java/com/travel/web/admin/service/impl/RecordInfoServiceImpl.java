@@ -1,10 +1,16 @@
 package com.travel.web.admin.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.travel.model.mapper.RecordInfoMapper;
 import com.travel.model.pojo.RecordInfo;
-import com.travel.model.service.RecordInfoService;
+import com.travel.web.admin.dto.record.RecordDTO;
+import com.travel.web.admin.mapper.RecordInfoMapper;
+import com.travel.web.admin.service.RecordInfoService;
+import com.travel.web.admin.vo.record.RecordVo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
 * @author 15101
@@ -13,8 +19,21 @@ import org.springframework.stereotype.Service;
 */
 @Service
 public class RecordInfoServiceImpl extends ServiceImpl<RecordInfoMapper, RecordInfo>
-    implements RecordInfoService{
+    implements RecordInfoService {
 
+    @Autowired
+    private RecordInfoMapper recordInfoMapper;
+
+
+    @Override
+    public IPage<RecordVo> getRecordInfoByPage(IPage<RecordVo> page, RecordDTO dto) {
+        IPage<RecordVo> result=recordInfoMapper.getRecordInfoByPage(page,dto);
+        List<RecordVo> records = result.getRecords();
+        records.forEach(item->{
+
+        });
+        return result;
+    }
 }
 
 

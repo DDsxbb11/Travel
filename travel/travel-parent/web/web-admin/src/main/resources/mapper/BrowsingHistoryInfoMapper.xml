@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.travel.model.mapper.BrowsingHistoryInfoMapper">
+<mapper namespace="com.travel.web.admin.mapper.BrowsingHistoryInfoMapper">
 
     <resultMap id="BaseResultMap" type="com.travel.model.pojo.BrowsingHistoryInfo">
             <id property="id" column="id" jdbcType="BIGINT"/>
@@ -12,7 +12,6 @@
             <result property="itemName" column="item_name" jdbcType="VARCHAR"/>
             <result property="itemImg" column="item_img" jdbcType="VARCHAR"/>
             <result property="itemDesc" column="item_desc" jdbcType="VARCHAR"/>
-            <result property="browseTime" column="browse_time" jdbcType="TIMESTAMP"/>
             <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
             <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
             <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>

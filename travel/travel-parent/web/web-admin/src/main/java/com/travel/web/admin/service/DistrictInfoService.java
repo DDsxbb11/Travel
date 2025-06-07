@@ -3,6 +3,8 @@ package com.travel.web.admin.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.travel.model.pojo.DistrictInfo;
 
+import java.util.List;
+
 /**
 * @author 15101
 * @description 针对表【district_info】的数据库操作Service
@@ -10,4 +12,5 @@ import com.travel.model.pojo.DistrictInfo;
 */
 public interface DistrictInfoService extends IService<DistrictInfo> {
 
+    List<DistrictInfo> getDistrictByCityId(Long id);
 }

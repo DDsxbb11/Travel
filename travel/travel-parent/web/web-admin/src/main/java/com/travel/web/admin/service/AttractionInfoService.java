@@ -1,7 +1,10 @@
 package com.travel.web.admin.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.travel.model.pojo.AttractionInfo;
+import com.travel.web.admin.dto.attraction.AttractionDTO;
+import com.travel.web.admin.dto.attraction.AttractionInfoDTO;
 
 /**
 * @author 15101
@@ -10,4 +13,9 @@ import com.travel.model.pojo.AttractionInfo;
 */
 public interface AttractionInfoService extends IService<AttractionInfo> {
 
+    IPage<AttractionInfo> getAttractionInfoPage(IPage<AttractionInfo> page, AttractionDTO dto);
+
+    void saveOrUpdateAttraction(AttractionInfoDTO dto);
+
+    AttractionInfoDTO getAttractionInfoById(Long id);
 }

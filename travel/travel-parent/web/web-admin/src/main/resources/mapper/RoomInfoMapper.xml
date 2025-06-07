@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.travel.model.mapper.RoomInfoMapper">
+<mapper namespace="com.travel.web.admin.mapper.RoomInfoMapper">
 
     <resultMap id="BaseResultMap" type="com.travel.model.pojo.RoomInfo">
             <id property="id" column="id" jdbcType="BIGINT"/>
@@ -11,6 +11,7 @@
             <result property="imgUrl" column="img_url" jdbcType="VARCHAR"/>
             <result property="price" column="price" jdbcType="DECIMAL"/>
             <result property="number" column="number" jdbcType="INTEGER"/>
+            <result property="status" column="status" jdbcType="TINYINT"/>
             <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
             <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
             <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
@@ -18,7 +19,50 @@
 
     <sql id="Base_Column_List">
         id,hotel_id,name,
-        img_url,price,number,
+        img_url,price,number,status,
         create_time,update_time,is_deleted
     </sql>
+    <select id="getRoomInfoPage" resultMap="RoomMap">
+        select
+            ri.id,ri.hotel_id,ri.name,
+            ri.img_url,ri.price,ri.number,ri.status,
+            ri.create_time,ri.update_time,ri.is_deleted,
+            hi.name as hotelName,hi.address,hi.province,hi.city,hi.district
+        from room_info ri
+        left join hotel_info hi on ri.hotel_id = hi.id and hi.is_deleted = 0 and hi.status = 1
+        where ri.is_deleted = 0 and ri.status = 1
+        <if test="dto.province != null and dto.province != ''">
+            and hi.province =#{dto.province}
+        </if>
+        <if test="dto.city != null and dto.city != ''">
+            and hi.city =#{dto.city}
+        </if>
+        <if test="dto.district != null and dto.district != ''">
+            and hi.district =#{dto.district}
+        </if>
+        <if test="dto.hotelName != null and dto.hotelName != ''">
+          and hi.name like concat('%',#{dto.hotelName},'%')
+        </if>
+        <if test="dto.roomName != null and dto.roomName != ''">
+          and ri.name like concat('%',#{dto.roomName},'%')
+        </if>
+
+    </select>
+    <resultMap id="RoomMap" type="com.travel.web.admin.vo.hotel.RoomVo">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="hotelId" column="hotel_id" jdbcType="BIGINT"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="imgUrl" column="img_url" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="DECIMAL"/>
+        <result property="number" column="number" jdbcType="INTEGER"/>
+        <result property="status" column="status" jdbcType="TINYINT"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
+        <result property="hotelName" column="hotelName" jdbcType="VARCHAR"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="province" column="province" jdbcType="VARCHAR"/>
+        <result property="city" column="city" jdbcType="VARCHAR"/>
+        <result property="district" column="district" jdbcType="VARCHAR"/>
+    </resultMap>
 </mapper>

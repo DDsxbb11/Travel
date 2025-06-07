@@ -53,7 +53,7 @@
             img_url,
             sort
         from route_info ri
-        where ri.item_id = #{id} and ri.is_deleted = 0
+        where ri.item_id = #{id} and ri.is_deleted = 0 and ri.type = "record"
 
     </select>
     <select id="getPage" resultMap="RecordVoMap">

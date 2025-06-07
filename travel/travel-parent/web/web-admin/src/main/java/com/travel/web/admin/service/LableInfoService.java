@@ -1,7 +1,9 @@
 package com.travel.web.admin.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.travel.model.pojo.LableInfo;
+import com.travel.web.admin.dto.strategy.LableDTO;
 
 /**
 * @author 15101
@@ -10,4 +12,5 @@ import com.travel.model.pojo.LableInfo;
 */
 public interface LableInfoService extends IService<LableInfo> {
 
+    IPage<LableInfo> getLableInfoPage(IPage<LableInfo> page, LableDTO dto);
 }

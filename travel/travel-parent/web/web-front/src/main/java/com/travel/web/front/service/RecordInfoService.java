@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.travel.model.pojo.RecordInfo;
 import com.travel.web.front.dto.record.RecordDTO;
+import com.travel.web.front.dto.record.RecordSavaDTO;
 import com.travel.web.front.vo.record.RecordDetailVo;
 import com.travel.web.front.vo.record.RecordVo;
 
@@ -23,4 +24,6 @@ public interface RecordInfoService extends IService<RecordInfo> {
      * 查询日记详情
      */
     RecordDetailVo getRecordDetailById(Long id,String token);
+
+    void saveRecord(RecordSavaDTO dto, String token);
 }

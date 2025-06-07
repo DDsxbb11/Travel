@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.travel.common.annotation.LoginCheck;
 import com.travel.common.result.Result;
 import com.travel.model.pojo.HotelOrderInfo;
+import com.travel.web.front.dto.order.OrderCancelDTO;
 import com.travel.web.front.service.HotelOrderInfoService;
 import com.travel.web.front.vo.hotel.HotelOrderVo;
 import io.swagger.v3.oas.annotations.Operation;
@@ -48,6 +49,15 @@ public class HotelOrderController {
     @LoginCheck
     public Result deleteHotelOrder(@RequestHeader("Token") String token, @PathVariable("id") Long id) {
         hotelOrderInfoService.deleteHotelOrder(token, id);
+        return Result.ok();
+    }
+
+    @PostMapping("/cancel")
+    @Operation(summary = "取消订单")
+    @LoginCheck
+    public Result cancelHotelOrder(@RequestHeader("Token") String token,
+                                   @RequestBody OrderCancelDTO dto) {
+        hotelOrderInfoService.cancelHotelOrder(token, dto);
         return Result.ok();
     }
 }

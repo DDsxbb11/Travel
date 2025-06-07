@@ -1,12 +1,14 @@
 package com.travel.web.front.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.travel.common.exce.GlobalException;
 import com.travel.common.result.ResultCodeEnum;
 import com.travel.common.utilis.JwtUtil;
+import com.travel.model.pojo.enums.OrderStateEnum;
 import com.travel.model.pojo.StrategyOrderInfo;
+import com.travel.web.front.dto.order.OrderCancelDTO;
 import com.travel.web.front.mapper.StrategyOrderInfoMapper;
 import com.travel.web.front.service.StrategyOrderInfoService;
 import com.travel.web.front.vo.strategy.StrategyOrderVo;
@@ -52,6 +54,22 @@ public class StrategyOrderInfoServiceImpl extends ServiceImpl<StrategyOrderInfoM
         boolean remove = this.removeById(id);
         if (!remove){
             throw new GlobalException(ResultCodeEnum.SERVICE_ERROR);
+        }
+    }
+
+    @Override
+    public void cancelStrategyOrder(String token, OrderCancelDTO dto) {
+        if(dto==null||dto.getId()==null || dto.getReason() ==null){
+            throw new GlobalException(ResultCodeEnum.PARAM_ERROR);
+        }
+        LambdaUpdateWrapper<StrategyOrderInfo> updateWrapper = new LambdaUpdateWrapper<>();
+        updateWrapper.eq(StrategyOrderInfo::getId, dto.getId())
+                .eq(StrategyOrderInfo::getUserId, jwtUtil.getUserId(token))
+                .set(StrategyOrderInfo::getState, OrderStateEnum.PROCESSING.getCode())
+                .set(StrategyOrderInfo::getNote, dto.getReason());
+        boolean update = this.update(updateWrapper);
+        if (!update) {
+            throw new GlobalException(ResultCodeEnum.ORDER_CANCEL_ERROR);
         }
     }
 }

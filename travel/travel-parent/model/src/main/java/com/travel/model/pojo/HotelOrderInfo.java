@@ -35,5 +35,6 @@ public class HotelOrderInfo extends BaseEntity{
     private Date endTime;
 
     private Integer state;
+    private String note;
 
 }

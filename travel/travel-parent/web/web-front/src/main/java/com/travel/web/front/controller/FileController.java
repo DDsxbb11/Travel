@@ -1,6 +1,8 @@
 package com.travel.web.front.controller;
 
+import com.travel.common.exce.GlobalException;
 import com.travel.common.result.Result;
+import com.travel.common.result.ResultCodeEnum;
 import com.travel.web.front.service.FileService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -17,17 +19,17 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/file")
-@Tag(name = "文件上传")
-@Slf4j
 public class FileController {
 
     @Autowired
     private FileService fileService;
 
     @PostMapping("/upload")
-    @Operation(summary = "文件上传")
-    public Result<String> upload(@RequestParam("file") MultipartFile file){
-        String result=fileService.upload(file);
-        return Result.ok(result);
+    public Result<String> upload(@RequestPart("file") MultipartFile file) {
+        if (file==null){
+            throw new GlobalException(ResultCodeEnum.PARAM_ERROR);
+        }
+        return Result.ok(fileService.upload(file));
     }
 }
+

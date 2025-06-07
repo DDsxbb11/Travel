@@ -5,8 +5,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.travel.common.exce.GlobalException;
 import com.travel.common.result.ResultCodeEnum;
-import com.travel.model.enums.FacilityTypeEnum;
-import com.travel.model.enums.ItemEnum;
+import com.travel.model.pojo.enums.FacilityTypeEnum;
+import com.travel.model.pojo.enums.ItemEnum;
 import com.travel.model.pojo.*;
 import com.travel.web.front.dto.hotel.HotelDTO;
 import com.travel.web.front.mapper.*;
@@ -21,7 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;

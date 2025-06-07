@@ -1,7 +1,12 @@
 package com.travel.web.admin.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.travel.model.pojo.AttractionTheme;
 import com.travel.model.pojo.RoomInfo;
+import com.travel.web.admin.dto.hotel.RoomDTO;
+import com.travel.web.admin.vo.hotel.RoomDetailVo;
+import com.travel.web.admin.vo.hotel.RoomVo;
 
 /**
 * @author 15101
@@ -10,4 +15,9 @@ import com.travel.model.pojo.RoomInfo;
 */
 public interface RoomInfoService extends IService<RoomInfo> {
 
+    IPage<RoomVo> getRoomInfoPage(IPage<RoomVo> page, RoomDTO dto);
+
+    void saveOrUpdateRoomInfo(RoomDetailVo dto);
+
+    RoomDetailVo getRoomInfoById(Long id);
 }

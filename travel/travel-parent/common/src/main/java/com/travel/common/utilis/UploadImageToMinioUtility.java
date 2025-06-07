@@ -21,7 +21,7 @@ import java.util.UUID;
  * @date: 2024/11/04  15:58
  */
 @Data
-//@Component
+@Component
 public class UploadImageToMinioUtility {
 
     @Autowired

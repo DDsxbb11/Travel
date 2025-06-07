@@ -1,9 +1,9 @@
 package com.travel.web.admin.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.travel.model.mapper.PolicyInfoMapper;
 import com.travel.model.pojo.PolicyInfo;
-import com.travel.model.service.PolicyInfoService;
+import com.travel.web.admin.mapper.PolicyInfoMapper;
+import com.travel.web.admin.service.PolicyInfoService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 */
 @Service
 public class PolicyInfoServiceImpl extends ServiceImpl<PolicyInfoMapper, PolicyInfo>
-    implements PolicyInfoService{
+    implements PolicyInfoService {
 
 }
 

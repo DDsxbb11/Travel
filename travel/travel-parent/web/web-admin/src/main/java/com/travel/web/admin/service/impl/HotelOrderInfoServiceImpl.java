@@ -1,9 +1,14 @@
 package com.travel.web.admin.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.travel.model.mapper.HotelOrderInfoMapper;
 import com.travel.model.pojo.HotelOrderInfo;
-import com.travel.model.service.HotelOrderInfoService;
+import com.travel.web.admin.dto.order.OrderDTO;
+import com.travel.web.admin.mapper.HotelOrderInfoMapper;
+import com.travel.web.admin.service.HotelOrderInfoService;
+import com.travel.web.admin.vo.order.AttractionOrderVo;
+import com.travel.web.admin.vo.order.HotelOrderVo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,8 +18,15 @@ import org.springframework.stereotype.Service;
 */
 @Service
 public class HotelOrderInfoServiceImpl extends ServiceImpl<HotelOrderInfoMapper, HotelOrderInfo>
-    implements HotelOrderInfoService{
+    implements HotelOrderInfoService {
 
+    @Autowired
+    private HotelOrderInfoMapper hotelOrderInfoMapper;
+
+    @Override
+    public IPage<HotelOrderVo> getHotelOrderInfoList(IPage<HotelOrderVo> page, OrderDTO dto) {
+        return hotelOrderInfoMapper.getHotelOrderInfoList(page,dto);
+    }
 }
 
 

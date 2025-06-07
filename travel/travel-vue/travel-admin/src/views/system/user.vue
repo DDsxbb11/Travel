@@ -1,22 +1,11 @@
-<script>
-import { getUserByPage, deleteUserById,updateUserById} from "@/api/request";
+attraction<script lang="ls">
+import {getSystemUserByPage,deleteSystemUser,updateSystemUserStatus,updateSystemUserPassword} from "@/api/system_user";
+
 export default {
   methods: {
-    updateInfo() {
-      return new Promise(() => {
-      updateUserById(this.form).then(response => {
-        this.table=false
-        this.getAll(this.pageNum)
-        this.$message({
-          message: '修改成功',
-          type: 'success'
-        })
-      })
-    })
-    },
     confirmEvent(id){
       return new Promise(()=>{
-        deleteUserById(id).then(response=>{
+        deleteSystemUser(id).then(response=>{
           this.getAll(this.pageNum)
           this.$message({
           message: '删除成功',
@@ -25,178 +14,216 @@ export default {
         })
       })
     },
-    
-    updateUser(user){
-      this.table=true
-      this.form=user
+    updatePassword(row) { 
+      this.$prompt('请输入新密码', '修改密码', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        inputType: 'password', // 密码输入框
+        inputPattern: /^[A-Za-z0-9]{6,16}$/, // 6-16位英文或数字
+        inputErrorMessage: '密码必须为6-16位的英文或数字组合',
+        inputValidator: (value) => {
+          // 额外校验（可选）
+          if (!value) {
+            return '密码不能为空';
+          }
+          if (value.length < 6 || value.length > 16) {
+            return '密码长度需为6-16位';
+          }
+          return true;
+        }
+      }).then(({ value }) => {
+        const data ={
+          phone: row.phone,
+          password: value
+        }
+        // 调用修改密码接口
+        updateSystemUserPassword(data).then(response => {
+          this.$message.success('密码修改成功');
+          this.getAll(this.param.pageNum); // 刷新数据（可选）
+        }).catch(error => {
+          this.$message.error('密码修改失败: ' + error.message);
+        });
+      }).catch(() => {
+        this.$message.info('已取消修改');
+      });
+    },
+    handleStatusChange(row) {
+      const data = {
+        id: row.id,
+        status: row.status==1?0:1,
+      };
+      return new Promise(()=>{
+        updateSystemUserStatus(data).then(response=>{
+          this.getAll(this.pageNum)
+          this.$message({
+          message: '修改成功',
+          type: 'success'
+        });
+        })
+      })
     },
     cancelForm(){
-      this.form=" "
-      this.table=false
+      this.param.username=""
+      this.param.phone=""
+      this.getAll(1)
     },
     getAll(val) {
+      this.param.pageNum = val;
       return new Promise(() => {
-        getUserByPage(val, 7,this.input).then((response) => {
-          this.pageNum=val
+        getSystemUserByPage(this.param).then((response) => {
           const { data } = response;
+          console.log(data);
           if (!data) {
             return reject("网络异常.");
           }
-          this.total = data.total;
-          this.tableData = data.records;
+          this.total = data.data.total;
+          this.tableData = data.data.records;
         });
       });
     },
-    timeHandle(t){
-      return t.split("T")[0];
-    },
+    
     search(){
-      getUserByPage(1, 7,this.input).then((response) => {
-      const { data } = response;
-      if (!data) {
-        return reject("网络异常.");
-      }
-      this.total = data.total;
-      this.tableData = data.records;
-    });
+      this.getAll(1)
     }
   },
 
   mounted() {
-    getUserByPage(1, 7,this.input).then((response) => {
-      const { data } = response;
-      if (!data) {
-        return reject("网络异常.");
-      }
-      this.total = data.total;
-      this.tableData = data.records;
-    });
+    this.getAll(1);
   },
   data() {
     return {
-      input: "",
       total: 0,
       pageNum: 1,
       tableData: [],
-      table: false,
-      form: {},
+      param: {
+        pageNum: 1,
+        pageSize: 5,
+        username: "",
+        phone: "",
+      }
     };
   },
 };
 </script>
 <template>
-  <div>
-    <div class="search">
+  <div style="height: 700px; color: #000">
+    <div class="list_info">
       <div style="margin-top: 15px">
         <div
           class="input-suffix"
-          size="small"
-          style="
-            margin-left: 50px;
-            margin-top: 5px;
-            position: absolute;
-            color: #303133;
-          "
+          style="margin-left: 40px; margin-top: 20px; position: absolute"
         >
-          姓名：
           <el-input
-            placeholder="按姓名查找"
-            v-model="input"
+            size="small"
+            placeholder="按游客姓名查找"
+            v-model="param.username"
             class="input-with-select"
           >
-            <el-button
-              slot="append"
-              icon="el-icon-search"
-              style="background-color: #1acf7d"
-              @click="search"
-            ></el-button>
           </el-input>
+          <el-input
+            size="small"
+            placeholder="按电话查找"
+            v-model="param.phone"
+            class="input-with-select"
+          >
+          </el-input>
+
+          <el-button
+            type="primary"
+            size="small"
+            style="margin-left: 20px; width: 80px"
+            @click="search"
+            >搜索</el-button
+          >
+          <el-button
+            type="info"
+            size="small"
+            style="margin-left: 20px; width: 80px"
+            @click="cancelForm"
+            >重置</el-button
+          >
         </div>
       </div>
-    </div>
-    <div class="opt">
-      <el-button type="danger" round size="small" style="margin-top: 4px;margin-left: 20px;">批量删除</el-button>
-    </div>
-    <div class="list_info">
+
       <div class="ppp">
-        <el-table
-          ref="multipleTable"
-          :data="tableData"
-          tooltip-effect="dark"
-          style="width: 100%"
-          @selection-change="handleSelectionChange"
-          border
-        >
-          <el-table-column type="selection" width="60" align="center">
-          </el-table-column>
-          <el-table-column
-            fixed
-            prop="nickname"
-            label="姓名"
-            width="120"
-            align="center"
-          >
+        <el-table :data="tableData" border style="width: 100%" max-height="490">
+          <el-table-column label="编号" width="100" align="center">
+            <template slot-scope="scope">
+              <span>{{ scope.$index + 1 }}</span>
+            </template>
           </el-table-column>
           <el-table-column
             prop="username"
-            label="账号"
+            label="姓名"
             width="120"
             align="center"
-          >
-          </el-table-column>
+          ></el-table-column>
           <el-table-column
-            prop="gender"
-            label="性别"
-            width="80"
+            prop="nickname"
+            label="昵称"
+            width="120"
             align="center"
-          >
-          </el-table-column>
+          ></el-table-column>
           <el-table-column
             prop="phone"
             label="电话"
             width="120"
             align="center"
-          >
-          </el-table-column>
-          <el-table-column label="图片" width="160" align="center">
-            <template slot-scope="scope" >
-              <img
-              :src=scope.row.header
-              style="width: 40px; height: 40px"
-            />
+          ></el-table-column>
+          <el-table-column label="头像" width="240" align="center">
+            <template slot-scope="scope">
+              <img :src="scope.row.header" style="width: 100px; height: 70px;">
             </template>
           </el-table-column>
           <el-table-column
-            prop="idcard"
-            label="身份证号"
-            width="120"
+            prop="email"
+            label="邮箱"
+            width="180"
             align="center"
-          >
-          </el-table-column>
+          ></el-table-column>
           <el-table-column
-            prop="address"
-            label="入职时间"
-            width="220"
+            prop="createTime"
+            label="注册时间"
+            width="180"
+            align="center"
+          ></el-table-column>
+          <el-table-column
+            prop="isOnline"
+            label="状态"
+            width="100"
             align="center"
           >
-          </el-table-column>
-          <el-table-column prop="role" label="职称" width="120" align="center">
+            <template #default="{ row }">
+              <el-switch
+                v-model="row.status==1"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
+                @change="handleStatusChange(row)"
+              ></el-switch>
+            </template>
           </el-table-column>
           <el-table-column
             fixed="right"
             label="操作"
-            width="120"
+            width="200"
             align="center"
           >
             <template slot-scope="scope">
+              <el-button
+                type="warning"
+                @click="updatePassword(scope.row)"
+                size="mini"
+                >修改密码</el-button
+              >
               <el-popconfirm
-                title="确定删除吗？"
+                title="确定要删除吗？"
                 @onConfirm="confirmEvent(scope.row.id)"
               >
                 <el-button
                   slot="reference"
                   type="danger"
-                  size="small"
+                  size="mini"
+                  style="margin-left: 10px"
                   >删除</el-button
                 >
               </el-popconfirm>
@@ -205,97 +232,44 @@ export default {
         </el-table>
         <div class="pagination">
           <el-pagination
-            :page-size="7"
+            :page-size=this.param.pageSize
             :page-count="8"
             layout="prev, pager, next"
             @current-change="getAll"
             :total="total"
-            style="top: 20px; position: relative; margin-left: 35%"
+            style="position: relative; margin-left: 35%"
           >
           </el-pagination>
         </div>
       </div>
     </div>
-    <!-- 抽屉 -->
-    <el-drawer :visible.sync="table" direction="rtl" size="50%">
-      <h3 style="margin-top: -40px; margin-left: 30px; color: #909399">
-        修改商品售价
-      </h3>
-      <div class="demo-drawer__content">
-        <el-form ref="form" :model="form" label-width="80px">
-          <el-form-item label="商品名称">
-            <el-input v-model="form.name" style="width: 200px" :disabled="true"></el-input>
-          </el-form-item>
-          <el-form-item label="商品售价">
-            <el-input v-model="form.price" style="width: 80px"></el-input>&nbsp;&nbsp;&nbsp;元
-          </el-form-item>
-        </el-form>
-        <div class="demo-drawer__footer" style="margin-left: 300px">
-          <el-button @click="cancelForm">取 消</el-button>
-          <el-button type="primary" @click="updateInfo">提交</el-button>
-        </div>
-      </div>
-    </el-drawer>
   </div>
 </template>
 
 <style scoped>
-.search {
-  width: 98%;
-  height: 50px;
-  margin-left: 1%;
-  margin-top: 20px;
-  border-right: 1px solid #e4e7ed;
-  border-radius: 7px;
-  background-color: #ebedf0;
-  position: relative;
-}
-
-.opt {
-  width: 98%;
-  height: 40px;
-  margin-left: 1%;
-  margin-top: 8px;
-  border-right: 1px solid #dddddd;
-  border-radius: 7px;
-  background-color: #ebedf0;
-  position: relative;
-}
-
 .list_info {
   width: 98%;
-  height: 650px;
+  height: 98%;
   margin-left: 1%;
   margin-top: 8px;
-  border-right: 1px solid #dddddd;
-  border-radius: 7px;
-  background-color: #ebedf0;
-  position: relative;
-}
-
-.table {
-  width: 100%;
-  height: 550px;
-  border-right: 1px solid #dddddd;
+  border: 1px solid #dddddd;
+  background-color: #fff;
   border-radius: 7px;
 }
 
-.ppp {
+.obtion {
   width: 98%;
-  height: 630px;
   margin-left: 1%;
-  top: 10px;
-  border-right: 1px solid #dddddd;
+  margin-top: 10px;
+  margin-bottom: 10px;
   border-radius: 7px;
   background-color: #ffffff;
-  position: absolute;
 }
-
-.pagination {
-  width: 100%;
-  height: 99px;
-  margin-top: -20px;
-  border-right: 1px solid #dddddd;
+.ppp {
+  width: 98%;
+  margin-top: 100px;
+  margin-left: 1%;
+  border: 1px solid #dddddd;
   border-radius: 7px;
   background-color: #ffffff;
 }
@@ -305,9 +279,9 @@ export default {
 }
 
 .input-with-select {
-  background-color: #fff;
-  width: 200px;
-  height: 10px;
+  width: 180px;
+  margin-left: 5px;
+  height: 4px;
 }
 </style>
 

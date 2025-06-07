@@ -1,7 +1,10 @@
 package com.travel.web.admin.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.travel.model.pojo.UserInfo;
+import com.travel.web.admin.dto.StatusDTO;
+import com.travel.web.admin.dto.tourist.TouristDTO;
 
 /**
 * @author 15101
@@ -9,5 +12,9 @@ import com.travel.model.pojo.UserInfo;
 * @createDate 2025-03-18 11:00:12
 */
 public interface UserInfoService extends IService<UserInfo> {
+
+    IPage<UserInfo> getUserInfoList(IPage<UserInfo> page, TouristDTO dto);
+
+    void updateTouristStatus(StatusDTO dto);
 
 }

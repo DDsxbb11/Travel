@@ -3,6 +3,7 @@ package com.travel.web.front.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.travel.model.pojo.AttractionOrderInfo;
+import com.travel.web.front.dto.order.OrderCancelDTO;
 import com.travel.web.front.vo.attraction.AttractionOrderVo;
 
 /**
@@ -17,4 +18,6 @@ public interface AttractionOrderInfoService extends IService<AttractionOrderInfo
     IPage<AttractionOrderVo> pageQuery(String token, IPage<AttractionOrderVo> page);
 
     void deleteAttractionOrder(String token, Long id);
+
+    void cancelAttractionOrder(String token, OrderCancelDTO dto);
 }

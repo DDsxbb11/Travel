@@ -1,7 +1,10 @@
 package com.travel.web.admin.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.travel.model.pojo.StrategyInfo;
+import com.travel.web.admin.dto.strategy.StrategyDTO;
+import com.travel.web.admin.vo.strategy.StrategyVo;
 
 /**
 * @author 15101
@@ -10,4 +13,9 @@ import com.travel.model.pojo.StrategyInfo;
 */
 public interface StrategyInfoService extends IService<StrategyInfo> {
 
+    IPage<StrategyInfo> getStrategyInfoByPage(IPage<StrategyInfo> page, StrategyDTO dto);
+
+    void saveOrUpdateStrategy(StrategyVo vo);
+
+    StrategyVo getStrategyById(Long id);
 }

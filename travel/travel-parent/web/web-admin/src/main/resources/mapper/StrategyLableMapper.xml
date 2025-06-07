@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.travel.model.mapper.StrategyLableMapper">
+<mapper namespace="com.travel.web.admin.mapper.StrategyLableMapper">
 
     <resultMap id="BaseResultMap" type="com.travel.model.pojo.StrategyLable">
             <id property="id" column="id" jdbcType="BIGINT"/>

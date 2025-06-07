@@ -1,10 +1,14 @@
 package com.travel.web.admin.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.travel.model.mapper.DistrictInfoMapper;
+import com.travel.model.pojo.CityInfo;
 import com.travel.model.pojo.DistrictInfo;
-import com.travel.model.service.DistrictInfoService;
+import com.travel.web.admin.mapper.DistrictInfoMapper;
+import com.travel.web.admin.service.DistrictInfoService;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
 * @author 15101
@@ -13,8 +17,14 @@ import org.springframework.stereotype.Service;
 */
 @Service
 public class DistrictInfoServiceImpl extends ServiceImpl<DistrictInfoMapper, DistrictInfo>
-    implements DistrictInfoService{
+    implements DistrictInfoService {
 
+    @Override
+    public List<DistrictInfo> getDistrictByCityId(Long id) {
+        LambdaQueryWrapper<DistrictInfo> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(DistrictInfo::getCityId,id);
+        return this.list(queryWrapper);
+    }
 }
 
 

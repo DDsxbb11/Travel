@@ -5,9 +5,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.travel.common.exce.GlobalException;
 import com.travel.common.result.ResultCodeEnum;
-import com.travel.model.enums.FeeEnum;
-import com.travel.model.enums.ItemEnum;
-import com.travel.model.enums.RouteTypeEnum;
+import com.travel.model.pojo.enums.ItemEnum;
+import com.travel.model.pojo.enums.RouteTypeEnum;
 import com.travel.model.pojo.*;
 import com.travel.web.front.dto.strategy.StrategyDTO;
 import com.travel.web.front.mapper.*;
@@ -20,7 +19,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
 * @author 15101

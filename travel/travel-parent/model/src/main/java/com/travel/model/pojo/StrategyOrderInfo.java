@@ -29,4 +29,6 @@ public class StrategyOrderInfo extends BaseEntity{
 
     private String paymentType;
     private Integer state;
+
+    private String note;
 }

@@ -2,26 +2,68 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.travel.model.mapper.HotelOrderInfoMapper">
+<mapper namespace="com.travel.web.admin.mapper.HotelOrderInfoMapper">
 
     <resultMap id="BaseResultMap" type="com.travel.model.pojo.HotelOrderInfo">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="hotelId" column="hotel_id" jdbcType="BIGINT"/>
-            <result property="roomId" column="room_id" jdbcType="BIGINT"/>
-            <result property="userId" column="user_id" jdbcType="BIGINT"/>
-            <result property="number" column="number" jdbcType="INTEGER"/>
-            <result property="price" column="price" jdbcType="DECIMAL"/>
-            <result property="orderTime" column="order_time" jdbcType="TIMESTAMP"/>
-            <result property="state" column="state" jdbcType="TINYINT"/>
-            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
-            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
-            <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="hotelId" column="hotel_id" jdbcType="BIGINT"/>
+        <result property="roomId" column="room_id" jdbcType="BIGINT"/>
+        <result property="userId" column="user_id" jdbcType="BIGINT"/>
+        <result property="number" column="number" jdbcType="INTEGER"/>
+        <result property="price" column="price" jdbcType="DECIMAL"/>
+        <result property="paymentType" column="payment_type" jdbcType="VARCHAR"/>
+        <result property="startTime" column="start_time" jdbcType="DATE"/>
+        <result property="endTime" column="end_time" jdbcType="DATE"/>
+        <result property="state" column="state" jdbcType="TINYINT"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="note" column="note" jdbcType="VARCHAR"/>
+        <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,hotel_id,room_id,
-        user_id,number,price,
-        order_time,state,create_time,
-        update_time,is_deleted
+        user_id,number,price,payment_type,
+        start_time,end_time,state,create_time,
+        update_time,note,is_deleted
     </sql>
+    <select id="getHotelOrderInfoList" resultMap="OrderMap">
+        select
+            hoi.id,hoi.hotel_id,hoi.room_id,
+            hoi.user_id,hoi.number,hoi.price,hoi.payment_type,
+            hoi.start_time,hoi.end_time,hoi.state,hoi.create_time,
+            hoi.update_time,note,hi.name as hotelName,
+            ri.name as roomName,ui.username as userName,ui.phone,hi.address
+        from hotel_order_info hoi
+        left join hotel_info hi on hoi.hotel_id = hi.id
+        left join room_info ri on hoi.room_id = ri.id
+        left join user_info ui on hoi.user_id = ui.id
+        where hoi.is_deleted = 0
+        <if test="dto.getPhone!=null and dto.getPhone!='' ">
+            and ui.phone like concat('%',#{dto.phone},'%')
+        </if>
+        <if test="dto.getItemName!=null and dto.getItemName!='' ">
+            and hi.name like concat('%',#{dto.itemName},'%')
+        </if>
+    </select>
+    <resultMap id="OrderMap" type="com.travel.web.admin.vo.order.HotelOrderVo">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="hotelId" column="hotel_id" jdbcType="BIGINT"/>
+        <result property="roomId" column="room_id" jdbcType="BIGINT"/>
+        <result property="userId" column="user_id" jdbcType="BIGINT"/>
+        <result property="number" column="number" jdbcType="INTEGER"/>
+        <result property="price" column="price" jdbcType="DECIMAL"/>
+        <result property="paymentType" column="payment_type" jdbcType="VARCHAR"/>
+        <result property="startTime" column="start_time" jdbcType="DATE"/>
+        <result property="endTime" column="end_time" jdbcType="DATE"/>
+        <result property="state" column="state" jdbcType="TINYINT"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="note" column="note" jdbcType="VARCHAR"/>
+        <result property="hotelName" column="hotelName" jdbcType="TINYINT"/>
+        <result property="roomName" column="roomName" jdbcType="TINYINT"/>
+        <result property="username" column="userName" jdbcType="TINYINT"/>
+        <result property="phone" column="phone" jdbcType="TINYINT"/>
+        <result property="address" column="address" jdbcType="TINYINT"/>
+    </resultMap>
 </mapper>

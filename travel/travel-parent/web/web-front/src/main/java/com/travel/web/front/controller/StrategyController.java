@@ -45,4 +45,6 @@ public class StrategyController {
         StrategyDetailVo result= strategyInfoService.getDetailById(id,token);
         return Result.ok(result);
     }
+
+
 }

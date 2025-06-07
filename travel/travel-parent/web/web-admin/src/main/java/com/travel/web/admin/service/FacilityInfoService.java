@@ -1,7 +1,11 @@
 package com.travel.web.admin.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.travel.model.pojo.FacilityInfo;
+import com.travel.web.admin.dto.facility.FacilityDTO;
+
+import java.util.List;
 
 /**
 * @author 15101
@@ -10,4 +14,7 @@ import com.travel.model.pojo.FacilityInfo;
 */
 public interface FacilityInfoService extends IService<FacilityInfo> {
 
+    IPage<FacilityInfo> getFacilityInfoPage(IPage<FacilityInfo> page, FacilityDTO dto);
+
+    List<FacilityInfo> getFacilityByType(FacilityDTO dto);
 }

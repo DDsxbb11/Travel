@@ -2,6 +2,9 @@ package com.travel.web.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.travel.model.pojo.ProvinceInfo;
+import com.travel.web.admin.vo.location.OptionVo;
+
+import java.util.List;
 
 /**
 * @author 15101
@@ -10,4 +13,7 @@ import com.travel.model.pojo.ProvinceInfo;
 */
 public interface ProvinceInfoService extends IService<ProvinceInfo> {
 
+    List<OptionVo> getProvinceAndCityCascade();
+
+    List<OptionVo> getProvinceAndCityAndDistrictCascade();
 }

@@ -18,7 +18,7 @@ public class WebMVConfig implements WebMvcConfigurer {
         // 设置允许跨域的路由
         registry.addMapping("/**")
                 // 设置允许跨域请求的域名
-                .allowedOrigins("http://localhost:9528") // 明确指定允许的来源
+                .allowedOrigins("http://localhost:9528","http://localhost:9529") // 明确指定允许的来源
                 // 跨域允许时间
                 .allowCredentials(true)
                 // 设置允许的方法

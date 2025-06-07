@@ -49,6 +49,9 @@
           <el-button type="text" style="margin-left: 15px; font-size: 16px"
             ><router-link to="/order">我的订单</router-link></el-button
           ><br />
+          <el-button type="text" style="margin-left: 15px; font-size: 16px"
+            ><router-link to="/publishRecord">发布日记</router-link></el-button
+          ><br />
           <el-button
             type="text"
             @click.native="logout"
@@ -166,7 +169,7 @@ export default {
   font-weight: bold; /* 可选：选中时加粗 */
 }
 .el-menu-demo{
-  margin-left: 36%;
+  margin-left: 30%;
   margin-top: 28px;
 }
 .menu-item{

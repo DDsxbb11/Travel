@@ -2,29 +2,69 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.travel.model.mapper.AttractionOrderInfoMapper">
+<mapper namespace="com.travel.web.admin.mapper.AttractionOrderInfoMapper">
 
     <resultMap id="BaseResultMap" type="com.travel.model.pojo.AttractionOrderInfo">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="attractionId" column="attraction_id" jdbcType="BIGINT"/>
-            <result property="userId" column="user_id" jdbcType="BIGINT"/>
-            <result property="childrenNumber" column="children_number" jdbcType="INTEGER"/>
-            <result property="childrenPrice" column="children_price" jdbcType="DECIMAL"/>
-            <result property="adultNumber" column="adult_number" jdbcType="INTEGER"/>
-            <result property="adultPrice" column="adult_price" jdbcType="DECIMAL"/>
-            <result property="totalPrice" column="total_price" jdbcType="DECIMAL"/>
-            <result property="orderTime" column="order_time" jdbcType="TIMESTAMP"/>
-            <result property="state" column="state" jdbcType="TINYINT"/>
-            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
-            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
-            <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="attractionId" column="attraction_id" jdbcType="BIGINT"/>
+        <result property="userId" column="user_id" jdbcType="BIGINT"/>
+        <result property="childrenNumber" column="children_number" jdbcType="INTEGER"/>
+        <result property="adultNumber" column="adult_number" jdbcType="INTEGER"/>
+        <result property="totalPrice" column="total_price" jdbcType="DECIMAL"/>
+        <result property="appointmentTime" column="appointment_time" jdbcType="TIMESTAMP"/>
+        <result property="paymentType" column="payment_type" jdbcType="VARCHAR"/>
+        <result property="state" column="state" jdbcType="TINYINT"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="note" column="note" jdbcType="VARCHAR"/>
+        <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,attraction_id,user_id,
-        children_number,children_price,adult_number,
-        adult_price,total_price,order_time,
+        children_number,adult_number,
+        total_price,payment_type,appointment_time,
         state,create_time,update_time,
         is_deleted
     </sql>
+    <select id="getOrderByPage" resultMap="OrderMap">
+        select
+            a.id,a.attraction_id,a.user_id,
+            a.children_number,a.adult_number,a.payment_type,
+            a.appointment_time,
+            a.total_price,a.state,a.create_time,a.update_time,
+            u.username,u.phone,
+            ai.name as attractionName,
+            ai.address as address
+        from attraction_order_info a
+        left join attraction_info ai on a.attraction_id = ai.id
+        left join user_info u on a.user_id = u.id
+        where a.is_deleted = 0
+        <if test="dto.getPhone!=null and dto.getPhone!='' ">
+            and u.phone like concat('%',#{dto.phone},'%')
+        </if>
+        <if test="dto.getItemName!=null and dto.getItemName!='' ">
+            and ai.name like concat('%',#{dto.itemName},'%')
+        </if>
+
+    </select>
+
+    <resultMap id="OrderMap" type="com.travel.web.admin.vo.order.AttractionOrderVo">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="attractionId" column="attraction_id" jdbcType="BIGINT"/>
+        <result property="userId" column="user_id" jdbcType="BIGINT"/>
+        <result property="childrenNumber" column="children_number" jdbcType="INTEGER"/>
+        <result property="adultNumber" column="adult_number" jdbcType="INTEGER"/>
+        <result property="totalPrice" column="total_price" jdbcType="DECIMAL"/>
+        <result property="appointmentTime" column="appointment_time" jdbcType="TIMESTAMP"/>
+        <result property="paymentType" column="payment_type" jdbcType="VARCHAR"/>
+        <result property="state" column="state" jdbcType="TINYINT"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="attractionName" column="attractionName" jdbcType="VARCHAR"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+    </resultMap>
+
 </mapper>

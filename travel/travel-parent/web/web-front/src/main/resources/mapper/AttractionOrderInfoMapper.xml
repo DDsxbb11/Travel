@@ -16,6 +16,7 @@
             <result property="state" column="state" jdbcType="TINYINT"/>
             <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
             <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="note" column="note" jdbcType="VARCHAR"/>
             <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
     </resultMap>
 
@@ -23,7 +24,7 @@
         id,attraction_id,user_id,
         children_number,adult_number,
         total_price,appointment_time,
-        state,create_time,update_time,
+        state,create_time,update_time,note,
         is_deleted
     </sql>
     <select id="pageQuery" resultType="com.travel.web.front.vo.attraction.AttractionOrderVo">

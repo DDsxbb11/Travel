@@ -10,6 +10,11 @@ export const getProvince = () => {
 export const getRecordByPage = (pageNum, pageSize,queryVo) => {
     return request.post(`record/${pageNum}/${pageSize}`,queryVo)
 }
+
+//发布日记
+export const publishRecord = (info) => {
+    return request.post(`record/save`,info)
+}
 //获取用户信息
 export const getUserInfo=()=>{
     return request.get("system/user")
@@ -55,4 +60,9 @@ export const addHistory=(info)=>{
 //获取浏览历史
 export const getHistory = (pageNum, pageSize) => {
     return request.get(`system/history/${pageNum}/${pageSize}`)
+}
+
+//申请退款
+export const refund=(type,info)=>{
+    return request.post(`system/order/${type}`,info)
 }

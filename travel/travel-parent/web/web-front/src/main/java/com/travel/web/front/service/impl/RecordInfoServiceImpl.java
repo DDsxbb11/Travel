@@ -1,16 +1,18 @@
 package com.travel.web.front.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.travel.common.utilis.JwtUtil;
-import com.travel.model.enums.ItemEnum;
-import com.travel.model.enums.RecordOptionEnum;
+import com.travel.model.pojo.RouteInfo;
+import com.travel.model.pojo.enums.ItemEnum;
 import com.travel.model.pojo.RecordInfo;
+import com.travel.model.pojo.enums.RouteTypeEnum;
 import com.travel.web.front.dto.record.RecordDTO;
+import com.travel.web.front.dto.record.RecordSavaDTO;
 import com.travel.web.front.mapper.RecordInfoMapper;
 import com.travel.web.front.service.CollectionsInfoService;
 import com.travel.web.front.service.RecordInfoService;
+import com.travel.web.front.service.RouteInfoService;
 import com.travel.web.front.vo.record.RecordDetailVo;
 import com.travel.web.front.vo.record.RecordVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,8 @@ public class RecordInfoServiceImpl extends ServiceImpl<RecordInfoMapper, RecordI
     private CollectionsInfoService collectionsInfoService;
     @Autowired
     private JwtUtil jwtUtil;
+    @Autowired
+    private RouteInfoService routeInfoService;
 
     /**
      * 分页查询日记
@@ -51,6 +55,18 @@ public class RecordInfoServiceImpl extends ServiceImpl<RecordInfoMapper, RecordI
             vo.setIsCollect(collectionsInfoService.isCollect(token,id, ItemEnum.RECORD.getLabel()));
         }
         return vo;
+    }
+
+    @Override
+    public void saveRecord(RecordSavaDTO dto, String token) {
+        dto.setAuthorId(jwtUtil.getUserId(token));
+        this.save(dto);
+        //报cun路线
+        dto.getRouteList().forEach(item->{
+            item.setItemId(dto.getId());
+            item.setType(RouteTypeEnum.RECORD.getCode());
+            routeInfoService.save(item);
+        });
     }
 }
 

@@ -14,7 +14,4 @@ import lombok.Data;
 @Data
 public class AttractionTheme extends BaseEntity{
     private String name;
-
-    private String label;
-
 }

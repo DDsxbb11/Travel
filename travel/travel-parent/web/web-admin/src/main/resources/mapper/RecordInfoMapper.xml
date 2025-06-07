@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.travel.model.mapper.RecordInfoMapper">
+<mapper namespace="com.travel.web.admin.mapper.RecordInfoMapper">
 
     <resultMap id="BaseResultMap" type="com.travel.model.pojo.RecordInfo">
             <id property="id" column="id" jdbcType="BIGINT"/>
@@ -20,4 +20,21 @@
         img_url,like,create_time,
         update_time,is_deleted
     </sql>
+    <select id="getRecordInfoByPage" resultType="com.travel.web.admin.vo.record.RecordVo">
+        select
+            ri.id,ri.author_id,ri.name,
+            ri.img_url,ri.create_time,ui.username,ui.phone,ui.nickname
+        from record_info ri
+        left join user_info ui on ri.author_id = ui.id
+        where ri.is_deleted = 0
+        <if test="dto.recordName != null and dto.recordName != ''">
+          and ri.name like concat('%',#{dto.recordName},'%')
+        </if>
+        <if test="dto.username != null and dto.username != ''">
+            and ui.username like concat('%',#{dto.username},'%')
+        </if>
+        <if test="dto.phone != null and dto.phone != ''">
+            and ui.phone like concat('%',#{dto.phone},'%')
+        </if>
+    </select>
 </mapper>

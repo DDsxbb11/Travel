@@ -15,13 +15,14 @@
             <result property="state" column="state" jdbcType="TINYINT"/>
             <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
             <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="note" column="note" jdbcType="VARCHAR"/>
             <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,strategy_id,user_id,
         number,appointment_time,price,payment_type,
-        state,create_time,update_time,
+        state,create_time,update_time,note,
         is_deleted
     </sql>
     <select id="pageQuery" resultType="com.travel.web.front.vo.strategy.StrategyOrderVo">

@@ -1,5 +1,7 @@
 package com.travel.web.front;
 
+import com.baomidou.mybatisplus.core.metadata.TableInfo;
+import com.baomidou.mybatisplus.core.metadata.TableInfoHelper;
 import com.obs.services.ObsClient;
 import com.obs.services.exception.ObsException;
 import com.obs.services.model.ObsObject;
@@ -21,15 +23,17 @@ import java.nio.file.Files;
 public class Text {
 
     @Autowired
-    private HuaweiObsUtil huaweiObsUtil;
-    @Autowired
     private ObsClient obsClient;
 
     @Test
     public void test() {
-        String localfile = "C:\\Users\\15101\\Desktop\\work\\hotel\\images\\BJFD.jpg";
-        String uploadFile = huaweiObsUtil.uploadFile(localfile, "picture");
-        System.out.println("uploadFile = " + uploadFile);
+        TableInfo tableInfo = TableInfoHelper.getTableInfo("attraction_info");
+        System.out.println("表名: " + tableInfo.getTableName());
+        System.out.println("字段信息：");
+        tableInfo.getFieldList().forEach(field -> {
+            System.out.println("字段名: " + field.getColumn());
+            System.out.println("field = " + field);
+        });
     }
     @Test
     public void test02() {

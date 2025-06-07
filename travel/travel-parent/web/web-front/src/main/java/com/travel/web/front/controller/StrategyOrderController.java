@@ -6,6 +6,7 @@ import com.travel.common.annotation.LoginCheck;
 import com.travel.common.result.Result;
 import com.travel.model.pojo.HotelOrderInfo;
 import com.travel.model.pojo.StrategyOrderInfo;
+import com.travel.web.front.dto.order.OrderCancelDTO;
 import com.travel.web.front.service.HotelOrderInfoService;
 import com.travel.web.front.service.StrategyOrderInfoService;
 import com.travel.web.front.vo.attraction.AttractionVo;
@@ -54,6 +55,15 @@ public class StrategyOrderController {
     public Result deleteOrder(@RequestHeader("Token") String token,
                               @PathVariable("id") Long id) {
         strategyOrderInfoService.deleteOrder(token, id);
+        return Result.ok();
+    }
+
+    @PostMapping("/cancel")
+    @Operation(summary = "取消订单")
+    @LoginCheck
+    public Result cancelStrategyOrder(@RequestHeader("Token") String token,
+                                      @RequestBody OrderCancelDTO dto) {
+        strategyOrderInfoService.cancelStrategyOrder(token, dto);
         return Result.ok();
     }
 }
