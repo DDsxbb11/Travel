@@ -54,7 +54,7 @@ export default {
         console.log(data)
         // 上传成功处理
         this.ruleForm.imageList.push({
-          url: data.data
+          url: data
         })
         
         this.$message.success('上传成功')
@@ -88,13 +88,13 @@ export default {
       if (!data) {
         return reject("网络异常.");
       }
-      this.ruleForm = data.data;
+      this.ruleForm = data;
       //为openTime赋值 7:00 - 17:00
-      this.openTime = [data.data.openTime.split('-')[0],data.data.openTime.split('-')[1]];
+      this.openTime = [data.openTime.split('-')[0],data.openTime.split('-')[1]];
       //为location赋值
-      this.location = [data.data.province,data.data.city];
+      this.location = [data.province,data.city];
       //为isFee赋值
-      this.delivery = data.data.isFee === 1;
+      this.delivery = data.isFee === 1;
     });
     }
     getAllTheme().then((response) => {
@@ -102,7 +102,7 @@ export default {
       if (!data) {
         return reject("网络异常.");
       }
-      this.themeList = data.data;
+      this.themeList = data;
       console.log(this.themeList);
     });
     getProvinceAndCityCascade().then((response) => {
@@ -110,7 +110,7 @@ export default {
       if (!data) {
         return reject("网络异常.");
       }
-      this.locationOptions = data.data;
+      this.locationOptions = data;
     });
   },
   data() {

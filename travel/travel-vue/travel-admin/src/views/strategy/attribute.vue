@@ -61,8 +61,8 @@ export default {
           if (!data) {
             return reject("网络异常.");
           }
-          this.total = data.data.total;
-          this.tableData = data.data.records;
+          this.total = data.total;
+          this.tableData = data.records;
           console.log(this.tableData);
         });
       });

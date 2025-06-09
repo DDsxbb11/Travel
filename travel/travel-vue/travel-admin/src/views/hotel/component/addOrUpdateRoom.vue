@@ -44,7 +44,7 @@ export default {
         const {data} = await uploadFile(file.file)
         console.log(data)
         // 上传成功处理
-        this.ruleForm.imgUrl = data.data
+        this.ruleForm.imgUrl = data
         
         this.$message.success('上传成功')
       } catch (error) {
@@ -57,11 +57,11 @@ export default {
       }
       const { data } =await getFacilityByType(param);
       if(type == 'room_facility'){
-        this.roomFacilityList = data.data
+        this.roomFacilityList = data
       }else if(type == 'room_bathroom_facility'){
-        this.roomBathroomFacilityList = data.data
+        this.roomBathroomFacilityList = data
       }else if(type == 'room_food_facility'){
-        this.roomFoodFacilityList = data.data
+        this.roomFoodFacilityList = data
       }
     },
     // 上传前的校验
@@ -89,7 +89,7 @@ export default {
       if (!data) {
         return reject("网络异常.");
       }
-      this.ruleForm = data.data;
+      this.ruleForm = data;
     });
     }
     this.getFacilityByType("room_facility");

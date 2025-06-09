@@ -10,8 +10,8 @@ export default {
         if (valid) {
           this.handlerLocation();
           this.handleTime();
-          // const {data} = addOrUpdateHotel(this.ruleForm);
-          // this.$message.success(this.ruleForm.id?'修改成功':'添加成功')
+          const {data} = addOrUpdateHotel(this.ruleForm);
+          this.$message.success(this.ruleForm.id?'修改成功':'添加成功')
           console.log(this.ruleForm)
         } else {
           console.log('error submit!!');
@@ -45,7 +45,7 @@ export default {
         const {data} = await uploadFile(file.file)
         console.log(data)
         // 上传成功处理
-        this.ruleForm.imgUrl = data.data
+        this.ruleForm.imgUrl = data
         
         this.$message.success('上传成功')
       } catch (error) {
@@ -57,7 +57,7 @@ export default {
         type: type,
       }
       const { data } =await getFacilityByType(param);
-      this.facilityList = data.data;
+      this.facilityList = data;
     },
     // 上传前的校验
     beforeUpload(file) {
@@ -97,9 +97,9 @@ export default {
       if (!data) {
         return reject("网络异常.");
       }
-      this.ruleForm = data.data;
-      this.policyInfo.itemId = data.data.id;
-      this.location = [data.data.province, data.data.city,data.data.district];
+      this.ruleForm = data;
+      this.policyInfo.itemId = data.id;
+      this.location = [data.province, data.city,data.district];
     });
     }
   },
@@ -115,7 +115,7 @@ export default {
       if (!data) {
         return reject("网络异常.");
       }
-      this.locationOptions = data.data;
+      this.locationOptions = data;
     });
     this.getFacilityByType("hotel_facility");
   },

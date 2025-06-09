@@ -29,7 +29,7 @@ export default {
         const {data} = await uploadFile(file.file)
         console.log(data)
         // 上传成功处理
-        this.ruleForm.imgUrl = data.data
+        this.ruleForm.imgUrl = data
         
         this.$message.success('上传成功')
       } catch (error) {
@@ -94,8 +94,8 @@ export default {
       if (!data) {
         return reject("网络异常.");
       }
-      this.ruleForm = data.data;
-      this.feeInfo.itemId = data.data.id;
+      this.ruleForm = data;
+      this.feeInfo.itemId = data.id;
     });
     },
   },
@@ -111,14 +111,14 @@ export default {
       if (!data) {
         return reject("网络异常.");
       }
-      this.provinceList = data.data;
+      this.provinceList = data;
     });
     getAllLable().then((response)=>{
       const { data } = response;
       if (!data) {
         return reject("网络异常.");
       }
-      this.labelList = data.data;
+      this.labelList = data;
     })
   },
   

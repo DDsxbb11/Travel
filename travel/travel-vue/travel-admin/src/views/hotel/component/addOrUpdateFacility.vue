@@ -25,7 +25,7 @@ export default {
         console.log(data)
         // 上传成功处理
         this.ruleForm.imageList.push({
-          url: data.data
+          url: data
         })
         
         this.$message.success('上传成功')
@@ -60,7 +60,7 @@ export default {
       if (!data) {
         return reject("网络异常.");
       }
-      this.ruleForm = data.data;
+      this.ruleForm = data;
     });
     }
     
